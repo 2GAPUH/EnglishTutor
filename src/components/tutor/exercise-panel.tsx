@@ -8,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { PenLine, Send, Copy, Check } from "lucide-react";
+import { PenLine, Send, Copy, Check, Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -255,6 +255,8 @@ function shuffleWithSeed<T>(arr: T[], seed: number): T[] {
 }
 
 function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
+  const [hintOpen, setHintOpen] = useState(false);
+
   const typeLabel: Record<ExerciseType, { label: string; color: string }> = {
     multiple_choice: { label: "Выбор", color: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400" },
     translate_ru_en: { label: "Перевод", color: "bg-sky-100 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400" },
@@ -272,19 +274,47 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
   return (
     <Card className="hover:shadow-sm transition-shadow">
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-semibold flex items-center gap-2">
-            <span className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-xs font-bold">
+        <div className="flex items-center justify-between gap-2">
+          <CardTitle className="text-base font-semibold flex items-center gap-2 min-w-0">
+            <span className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-xs font-bold shrink-0">
               {index}
             </span>
-            {exercise.question}
+            <span className="truncate">{exercise.question}</span>
           </CardTitle>
-          <Badge variant="secondary" className={cn("text-xs shrink-0 ml-2", meta.color)}>
-            {meta.label}
-          </Badge>
+          <div className="flex items-center gap-1.5 shrink-0">
+            {exercise.hint && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setHintOpen(!hintOpen)}
+                className={cn(
+                  "h-7 px-2 gap-1.5 text-xs rounded-full transition-colors",
+                  hintOpen
+                    ? "bg-amber-100 text-amber-700 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400"
+                    : "text-muted-foreground hover:text-amber-600 hover:bg-amber-50 dark:hover:text-amber-400 dark:hover:bg-amber-900/20"
+                )}
+              >
+                <Lightbulb className={cn("h-3.5 w-3.5", hintOpen && "fill-current")} />
+                <span className="hidden sm:inline">{hintOpen ? "Скрыть" : "Подсказка"}</span>
+              </Button>
+            )}
+            <Badge variant="secondary" className={cn("text-xs", meta.color)}>
+              {meta.label}
+            </Badge>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
+        {/* Hint */}
+        {hintOpen && exercise.hint && (
+          <div className="bg-amber-50 dark:bg-amber-900/15 border border-amber-200 dark:border-amber-800/40 rounded-lg p-3 flex gap-2.5">
+            <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5 fill-current" />
+            <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+              {exercise.hint}
+            </p>
+          </div>
+        )}
+
         {exercise.type === "multiple_choice" && exercise.options && (
           <RadioGroup value={value} onValueChange={onChange} className="space-y-2">
             {shuffledOptions.map((option, i) => (

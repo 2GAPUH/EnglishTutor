@@ -4,7 +4,6 @@ import { db } from "@/lib/db";
 // POST /api/tutor/reset — reset all progress
 export async function POST() {
   try {
-    await db.userAnswer.deleteMany();
     await db.tenseProgress.deleteMany();
 
     return NextResponse.json({ success: true });

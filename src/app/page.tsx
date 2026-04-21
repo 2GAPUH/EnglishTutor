@@ -24,8 +24,6 @@ import {
   GraduationCap,
   RotateCcw,
   Menu,
-  PanelLeftClose,
-  PanelLeftOpen,
   AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -113,6 +111,17 @@ export default function TutorPage() {
     e.preventDefault();
   };
 
+  // Unified sidebar toggle handler
+  const handleSidebarToggle = () => {
+    // On mobile (md and below), use Sheet
+    if (window.innerWidth < 768) {
+      setSidebarOpen(true);
+    } else {
+      // On desktop, toggle sidebar collapsed
+      toggleSidebarCollapsed();
+    }
+  };
+
   // Reset: first dialog → second dialog → action
   const openResetDialog = () => setResetOpen(true);
   const handleFirstConfirm = () => {
@@ -122,11 +131,24 @@ export default function TutorPage() {
   const handleFinalReset = async () => {
     setConfirmResetOpen(false);
     try {
-      await fetch("/api/tutor/reset", { method: "POST" });
-      // Also clear localStorage frozen data
+      const res = await fetch("/api/tutor/reset", { method: "POST" });
+      if (!res.ok) {
+        toast.error("Не удалось сбросить прогресс (ошибка сервера)");
+        return;
+      }
+      // Clear localStorage frozen data
       localStorage.removeItem("tutor_frozen_exercises");
+      // Fully reset client state
+      useTutorStore.setState({
+        progressMap: {},
+        currentTense: "present-simple",
+        currentView: "theory",
+        selectedExercises: [],
+        answers: {},
+        exerciseCount: 10,
+        frozenIds: {},
+      });
       toast.success("Весь прогресс сброшен");
-      loadAll();
     } catch (_err) {
       toast.error("Не удалось сбросить прогресс");
     }
@@ -152,9 +174,6 @@ export default function TutorPage() {
   const handleForceSwitch = () => {
     setSwitchWarningOpen(false);
     if (pendingTense) {
-      // Force switch by directly setting tense without check
-      const { setCurrentTense } = useTutorStore.getState();
-      // Bypass the in-progress check by calling set directly
       useTutorStore.setState({
         currentTense: pendingTense as any,
         currentView: "theory",
@@ -184,11 +203,24 @@ export default function TutorPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
         <div className="flex items-center justify-between h-14 px-4 md:px-6">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            {/* Unified sidebar toggle button — left of logo */}
             <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden" aria-label="Меню">
-                  <Menu className="h-5 w-5" />
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8"
+                  aria-label="Меню"
+                  onClick={(e) => {
+                    // On mobile, let Sheet handle it; on desktop, toggle collapsed
+                    if (window.innerWidth >= 768) {
+                      e.preventDefault();
+                      toggleSidebarCollapsed();
+                    }
+                  }}
+                >
+                  <Menu className="h-4.5 w-4.5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] p-0">
@@ -197,7 +229,7 @@ export default function TutorPage() {
               </SheetContent>
             </Sheet>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-primary text-primary-foreground">
                 <GraduationCap className="h-4.5 w-4.5" />
               </div>
@@ -247,20 +279,6 @@ export default function TutorPage() {
             />
           </aside>
         )}
-
-        {/* Sidebar toggle button (desktop) */}
-        <button
-          onClick={toggleSidebarCollapsed}
-          className="hidden md:flex items-center justify-center w-6 border-r bg-card/30 hover:bg-muted transition-colors shrink-0"
-          title={sidebarCollapsed ? "Показать меню" : "Скрыть меню"}
-          aria-label={sidebarCollapsed ? "Показать меню" : "Скрыть меню"}
-        >
-          {sidebarCollapsed ? (
-            <PanelLeftOpen className="h-3.5 w-3.5 text-muted-foreground" />
-          ) : (
-            <PanelLeftClose className="h-3.5 w-3.5 text-muted-foreground" />
-          )}
-        </button>
 
         <main className="flex-1 min-w-0">
           <ScrollArea className="h-[calc(100vh-3.5rem)]">

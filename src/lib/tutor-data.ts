@@ -29,6 +29,7 @@ export interface Exercise {
   options?: string[];
   correctAnswer: string;
   explanation: string;
+  hint?: string;
 }
 
 export interface TheorySection {

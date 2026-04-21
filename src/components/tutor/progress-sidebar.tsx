@@ -8,7 +8,6 @@ import { CheckCircle2, Circle, Lock, BookOpen, PenLine, Trophy, Award, Check } f
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -39,12 +38,12 @@ export function ProgressSidebar({ className, onSelectTense }: ProgressSidebarPro
 
   return (
     <div className={cn("flex flex-col h-full", className)}>
-      <div className="p-4 border-b">
-        <h2 className="text-lg font-semibold tracking-tight">Программа обучения</h2>
-        <p className="text-sm text-muted-foreground mt-1">12 времён английского</p>
+      <div className="px-4 py-3 border-b shrink-0">
+        <h2 className="text-base font-semibold tracking-tight truncate">Программа обучения</h2>
+        <p className="text-xs text-muted-foreground mt-0.5 truncate">12 времён английского</p>
       </div>
       <ScrollArea className="flex-1">
-        <div className="p-3 space-y-1">
+        <div className="p-2 space-y-0.5">
           {BLOCKS.map((block, blockIdx) => (
             <BlockSection
               key={block.id}
@@ -82,7 +81,6 @@ function BlockSection({
   progressMap,
   onSelectTense,
   isActive,
-  isUnlocked,
 }: BlockSectionProps) {
   const completedCount = tenseIds.filter((t) => progressMap[t]?.completed).length;
   const [open, setOpen] = React.useState(isActive);
@@ -92,25 +90,25 @@ function BlockSection({
       <button
         onClick={() => setOpen(!open)}
         className={cn(
-          "w-full flex items-center justify-between px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
+          "w-full flex items-center justify-between px-2.5 py-2 rounded-md text-sm font-medium transition-colors gap-1",
           isActive && "bg-primary/5 text-primary",
           !isActive && "hover:bg-muted"
         )}
       >
-        <span className="flex items-center gap-2">
+        <span className="flex items-center gap-1.5 min-w-0">
           {completedCount === tenseIds.length ? (
-            <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+            <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
           ) : (
-            <Circle className="h-4 w-4 text-muted-foreground" />
+            <Circle className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
           )}
-          {blockName}
+          <span className="truncate">{blockName}</span>
         </span>
-        <div className="flex items-center gap-2">
-          <Badge variant="secondary" className="text-xs">
+        <div className="flex items-center gap-1 shrink-0">
+          <Badge variant="secondary" className="text-[10px] px-1.5 py-0">
             {completedCount}/{tenseIds.length}
           </Badge>
           <svg
-            className={cn("h-4 w-4 text-muted-foreground transition-transform", open && "rotate-90")}
+            className={cn("h-3.5 w-3.5 text-muted-foreground transition-transform shrink-0", open && "rotate-90")}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -121,7 +119,7 @@ function BlockSection({
       </button>
 
       {open && (
-        <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-border pl-3">
+        <div className="ml-3 mt-0.5 space-y-0.5 border-l-2 border-border pl-2">
           {tenseIds.map((tenseId, tIdx) => {
             const progress = progressMap[tenseId];
             const isCurrent = tenseId === currentTense;
@@ -130,7 +128,7 @@ function BlockSection({
 
             return (
               <React.Fragment key={tenseId}>
-                {isFinalTest && <Separator className="my-2 !border-dashed" />}
+                {isFinalTest && <Separator className="my-1.5 !border-dashed" />}
                 <TenseButton
                   tenseId={tenseId}
                   isCurrent={isCurrent}
@@ -144,7 +142,7 @@ function BlockSection({
           })}
         </div>
       )}
-      <Separator className="my-2" />
+      <Separator className="my-1.5" />
     </div>
   );
 }
@@ -212,6 +210,9 @@ function TenseButton({
     setMenuOpen(!menuOpen);
   };
 
+  // Determine if the button is on a dark background
+  const isDarkBg = isCurrent && !isLocked;
+
   return (
     <div className="relative" ref={menuRef}>
       <button
@@ -219,7 +220,7 @@ function TenseButton({
         onContextMenu={handleContextMenu}
         disabled={isLocked}
         className={cn(
-          "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm transition-colors group",
+          "w-full flex items-center gap-1.5 px-2 py-1.5 rounded-md text-sm transition-colors group",
           isCurrent && !isFinalTest && "bg-primary text-primary-foreground",
           isCurrent && isFinalTest && "bg-amber-500 text-white",
           !isCurrent && !isLocked && !isFinalTest && "hover:bg-muted text-foreground",
@@ -247,15 +248,20 @@ function TenseButton({
         ) : (
           <Circle className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         )}
-        <span className="text-left truncate flex-1">{TENSE_NAMES[tenseId]?.ru || tenseId}</span>
-        {/* Triple dot for context menu (visible on hover) */}
+        <span className="text-left truncate flex-1 min-w-0">{TENSE_NAMES[tenseId]?.ru || tenseId}</span>
+        {/* Triple dot for context menu — visible on dark background when active */}
         {!isLocked && (
           <span
             onClick={(e) => {
               e.stopPropagation();
               setMenuOpen(!menuOpen);
             }}
-            className="opacity-0 group-hover:opacity-100 h-4 w-4 flex items-center justify-center text-muted-foreground hover:text-foreground transition-opacity shrink-0"
+            className={cn(
+              "opacity-0 group-hover:opacity-100 h-4 w-4 flex items-center justify-center transition-opacity shrink-0",
+              isDarkBg
+                ? "text-primary-foreground/70 hover:text-primary-foreground"
+                : "text-muted-foreground hover:text-foreground"
+            )}
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
               <circle cx="2" cy="6" r="1.2" />
