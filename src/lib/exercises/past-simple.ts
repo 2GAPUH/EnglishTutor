@@ -1,7 +1,7 @@
 import type { Exercise } from "@/lib/tutor-data";
 
 // ============================================================
-// Past Simple — 100 exercises
+// Past Simple — 130 exercises
 // ============================================================
 
 export const pastSimpleExercises: Exercise[] = [
@@ -27,11 +27,11 @@ export const pastSimpleExercises: Exercise[] = [
   // Неправильные глаголы
   { id: 16, tense: "past-simple", type: "multiple_choice", question: "She ___ a beautiful dress at the wedding.", options: ["wore", "worn", "weared", "wearing"], correctAnswer: "wore", explanation: "Wear — неправильный: wore (не weared, не worn — это V3)." },
   { id: 17, tense: "past-simple", type: "multiple_choice", question: "He ___ his keys and couldn't get in.", options: ["lost", "losed", "loosed", "lose"], correctAnswer: "lost", explanation: "Lose — неправильный: lost (НЕ losed!)." },
-  { id: 18, tense: "past-simple", type: "multiple_choice", question: "They ___ the match 3-1.", options: ["won", "win", "winned", "winned"], correctAnswer: "won", explanation: "Win — неправильный: won (НЕ winned!)." },
+  { id: 18, tense: "past-simple", type: "multiple_choice", question: "They ___ the match 3-1.", options: ["won", "win", "winned", "winning"], correctAnswer: "won", explanation: "Win — неправильный: won (НЕ winned!)." },
   { id: 19, tense: "past-simple", type: "multiple_choice", question: "She ___ me a beautiful gift for my birthday.", options: ["gave", "gived", "given", "gives"], correctAnswer: "gave", explanation: "Give — неправильный: gave (не gived!)." },
   { id: 20, tense: "past-simple", type: "multiple_choice", question: "I ___ the bus this morning.", options: ["caught", "catched", "catch", "cought"], correctAnswer: "caught", explanation: "Catch — неправильный: caught (НЕ catched!)." },
   // Правильные глаголы с особенностями -ed
-  { id: 21, tense: "past-simple", type: "multiple_choice", question: "She ___ maths at university.", options: ["studied", "studyed", "studied", "studies"], correctAnswer: "studied", explanation: "Study: согласная + y → y→ied: studied (НЕ studyed!)." },
+  { id: 21, tense: "past-simple", type: "multiple_choice", question: "She ___ maths at university.", options: ["studied", "studyed", "studiied", "studies"], correctAnswer: "studied", explanation: "Study: согласная + y → y→ied: studied (НЕ studyed!)." },
   { id: 22, tense: "past-simple", type: "multiple_choice", question: "He ___ to work by bus last year.", options: ["travelled", "traveled", "travelling", "travels"], correctAnswer: "travelled", explanation: "Британский: travel + ed = travelled (двойная l!). Американский: traveled." },
   { id: 23, tense: "past-simple", type: "multiple_choice", question: "They ___ the meeting because of the snow.", options: ["cancelled", "canceled", "canceling", "cancel"], correctAnswer: "cancelled", explanation: "Британский: cancel + ed = cancelled (двойная l!)." },
   { id: 24, tense: "past-simple", type: "multiple_choice", question: "It suddenly ___ raining.", options: ["stoped", "stopped", "stopt", "stops"], correctAnswer: "stopped", explanation: "Stop: краткий гласный + 1 согласная → удвоить: stopped (НЕ stoped!)." },
@@ -123,4 +123,61 @@ export const pastSimpleExercises: Exercise[] = [
   { id: 98, tense: "past-simple", type: "translate_ru_en", question: "Я выбрал синюю рубашку.", correctAnswer: "I chose the blue shirt", explanation: "Choose → chose." },
   { id: 99, tense: "past-simple", type: "translate_ru_en", question: "Она дала мне правильный ответ.", correctAnswer: "She gave me the correct answer", explanation: "Give → gave." },
   { id: 100, tense: "past-simple", type: "translate_ru_en", question: "Мы провели отпуск у моря.", correctAnswer: "We spent our holiday at the seaside", explanation: "Spend → spent. Британский: at the seaside (не on)." },
+
+  // ===== NEW: Missing Topics (101–130) =====
+  // Wh-вопросы, just now, the other day, Second Conditional,
+  // must → had to / didn't have to, was able to vs could,
+  // would vs used to, at the weekend
+
+  // ===== Multiple Choice (101–110) =====
+  // Wh-вопросы
+  { id: 101, tense: "past-simple", type: "multiple_choice", question: "___ did you ___ yesterday evening?", options: ["What / do", "What / did", "What / did do", "Where / did"], correctAnswer: "What / do", explanation: "Wh-вопрос в Past Simple: Wh-слово + did + подлежащее + V1 (do, не did!)." },
+  { id: 102, tense: "past-simple", type: "multiple_choice", question: "Where ___ she ___ last summer?", options: ["did / go", "did / went", "does / go", "was / go"], correctAnswer: "did / go", explanation: "Where + did + she + V1 (go, не went!). После did глагол в начальной форме." },
+  { id: 103, tense: "past-simple", type: "multiple_choice", question: "___ did he leave so early?", options: ["Why", "What", "When", "Where"], correctAnswer: "Why", explanation: "Why = «почему». Why + did + he + V1 (leave)." },
+  { id: 104, tense: "past-simple", type: "multiple_choice", question: "___ did you see at the party?", options: ["Who", "Whom", "What", "Where"], correctAnswer: "Who", explanation: "Who = «кого» (разговорный). Who + did + you + V1 (see)." },
+  // just now / the other day
+  { id: 105, tense: "past-simple", type: "multiple_choice", question: "She left ___.", options: ["just now", "just", "already now", "since now"], correctAnswer: "just now", explanation: "Just now = «только что» в значении завершённого действия → Past Simple. Не путать с just + Present Perfect." },
+  { id: 106, tense: "past-simple", type: "multiple_choice", question: "I saw him ___.", options: ["the other day", "other day", "another day", "the another day"], correctAnswer: "the other day", explanation: "The other day = «на днях» → Past Simple. Устойчивое выражение с артиклем the." },
+  // Second Conditional
+  { id: 107, tense: "past-simple", type: "multiple_choice", question: "If I ___ a million pounds, I would buy a house.", options: ["had", "have", "has", "would have"], correctAnswer: "had", explanation: "Second Conditional: If + Past Simple (had), would + V1. Нереальное условие в настоящем/будущем." },
+  // must → had to / didn't have to
+  { id: 108, tense: "past-simple", type: "multiple_choice", question: "I ___ get up early yesterday because I had an exam.", options: ["had to", "must", "musted", "must to"], correctAnswer: "had to", explanation: "Must не имеет формы прошедшего времени! Прошедшая форма must → had to." },
+  { id: 109, tense: "past-simple", type: "multiple_choice", question: "It was a holiday, so I ___ work.", options: ["didn't have to", "mustn't", "hadn't to", "mustn't have to"], correctAnswer: "didn't have to", explanation: "Didn't have to = «не нужно было» (отсутствие обязанности). Mustn't = «запрещено» — другое значение!" },
+  // was able to vs could
+  { id: 110, tense: "past-simple", type: "multiple_choice", question: "After hours of trying, I finally ___ solve the problem.", options: ["was able to", "could", "can", "was could"], correctAnswer: "was able to", explanation: "Однократный успех в прошлом → was/were able to (или managed to). Could = общая способность." },
+
+  // ===== Fill in the Blank (111–120) =====
+  // Wh-вопросы
+  { id: 111, tense: "past-simple", type: "fill_blank", question: "When ___ (they / arrive)?", correctAnswer: "did they arrive", explanation: "Wh-вопрос в Past Simple: When + did + подлежащее + V1." },
+  { id: 112, tense: "past-simple", type: "fill_blank", question: "How ___ (you / get) to the airport?", correctAnswer: "did you get", explanation: "How + did + you + V1 (get). Get — неправильный, но после did стоит V1 = get." },
+  // just now / the other day
+  { id: 113, tense: "past-simple", type: "fill_blank", question: "The taxi ___ (arrive) just now.", correctAnswer: "arrived", explanation: "Just now = «только что» → Past Simple. Arrive + d = arrived." },
+  { id: 114, tense: "past-simple", type: "fill_blank", question: "I ___ (bump into) her the other day.", correctAnswer: "bumped into", explanation: "The other day → Past Simple. Bump: краткий гласный + 1 согласная → bumped. Bump into = случайно встретить." },
+  // Second Conditional
+  { id: 115, tense: "past-simple", type: "fill_blank", question: "I wish I ___ (know) French.", correctAnswer: "knew", explanation: "I wish + Past Simple = сожаление о настоящем. Know — неправильный: knew." },
+  { id: 116, tense: "past-simple", type: "fill_blank", question: "If she ___ (have) more time, she would travel more.", correctAnswer: "had", explanation: "Second Conditional: If + Past Simple (had), would + V1. Нереальное условие." },
+  // must → had to / didn't have to
+  { id: 117, tense: "past-simple", type: "fill_blank", question: "She ___ (have to) wait for two hours at the station.", correctAnswer: "had to", explanation: "Have to в прошедшем → had to. Must не имеет формы прошедшего!" },
+  { id: 118, tense: "past-simple", type: "fill_blank", question: "We ___ (not / have to) go to school yesterday — it was a holiday.", correctAnswer: "didn't have to", explanation: "Didn't have to = «не нужно было» (отсутствие необходимости)." },
+  // was able to vs could
+  { id: 119, tense: "past-simple", type: "fill_blank", question: "He ___ (be able to) pass the exam on his second attempt.", correctAnswer: "was able to", explanation: "Однократный успех в прошлом → was/were able to (не could!). Could = общая способность." },
+  // used to vs would + at the weekend
+  { id: 120, tense: "past-simple", type: "fill_blank", question: "She ___ (use to / be) very shy when she was young.", correctAnswer: "used to be", explanation: "Состояние (be shy) → только used to. Would нельзя использовать с состояниями!" },
+
+  // ===== Translate RU → EN (121–130) =====
+  // Wh-вопросы
+  { id: 121, tense: "past-simple", type: "translate_ru_en", question: "Что ты делал вчера вечером?", correctAnswer: "What did you do yesterday evening", explanation: "Wh-вопрос: What + did + you + V1 (do)." },
+  { id: 122, tense: "past-simple", type: "translate_ru_en", question: "Куда она поехала в прошлом году?", correctAnswer: "Where did she go last year", explanation: "Where + did + she + V1 (go). Last year → Past Simple." },
+  { id: 123, tense: "past-simple", type: "translate_ru_en", question: "Почему он ушёл так рано?", correctAnswer: "Why did he leave so early", explanation: "Why + did + he + V1 (leave, не left!)." },
+  // just now / the other day
+  { id: 124, tense: "past-simple", type: "translate_ru_en", question: "Он ушёл только что.", correctAnswer: "He left just now", explanation: "Just now = «только что» в прошедшем → Past Simple: left." },
+  { id: 125, tense: "past-simple", type: "translate_ru_en", question: "Я встретил его на днях.", correctAnswer: "I met him the other day", explanation: "The other day = «на днях» → Past Simple. Meet → met." },
+  // Second Conditional
+  { id: 126, tense: "past-simple", type: "translate_ru_en", question: "Если бы у меня было время, я бы помог тебе.", correctAnswer: "If I had time, I would help you", explanation: "Second Conditional: If + Past Simple (had), would + V1." },
+  // must → had to / didn't have to
+  { id: 127, tense: "past-simple", type: "translate_ru_en", question: "Мне пришлось рано встать вчера.", correctAnswer: "I had to get up early yesterday", explanation: "Must в прошедшем → had to. Get up → got up в Past Simple, но have to → had to." },
+  { id: 128, tense: "past-simple", type: "translate_ru_en", question: "Мне не нужно было работать в субботу.", correctAnswer: "I didn't have to work on Saturday", explanation: "Didn't have to = «не нужно было» (отсутствие обязанности)." },
+  // was able to / used to vs would / at the weekend
+  { id: 129, tense: "past-simple", type: "translate_ru_en", question: "Ей удалось сдать экзамен со второго раза.", correctAnswer: "She was able to pass the exam on her second attempt", explanation: "Однократный успех в прошлом → was/were able to (не could!)." },
+  { id: 130, tense: "past-simple", type: "translate_ru_en", question: "Мы ходили в парк на выходных.", correctAnswer: "We went to the park at the weekend", explanation: "Британский: at the weekend (не on the weekend!). Go → went." },
 ];

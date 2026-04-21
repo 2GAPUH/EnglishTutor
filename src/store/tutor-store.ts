@@ -28,10 +28,12 @@ interface TutorState {
 
   // Sidebar
   sidebarOpen: boolean;
+  sidebarCollapsed: boolean;
+  sidebarWidth: number;
 
   // Actions
   setView: (view: ViewType) => void;
-  setCurrentTense: (tense: TenseId) => void;
+  setCurrentTense: (tense: TenseId) => string | void;
   setProgressMap: (map: Record<TenseId, TenseProgressInfo>) => void;
   setExerciseCount: (count: number) => void;
   setSelectedExercises: (exercises: Exercise[]) => void;
@@ -39,6 +41,8 @@ interface TutorState {
   resetAnswers: () => void;
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
+  toggleSidebarCollapsed: () => void;
+  setSidebarWidth: (width: number) => void;
 
   // Frozen exercises management
   loadFrozen: () => void;
@@ -48,9 +52,12 @@ interface TutorState {
 
   goToNextTense: () => TenseId | null;
   goToTheory: () => void;
+  markTenseStudied: (tenseId: TenseId) => void;
 }
 
 const FROZEN_KEY = "tutor_frozen_exercises";
+const SIDEBAR_WIDTH_KEY = "tutor_sidebar_width";
+const SIDEBAR_COLLAPSED_KEY = "tutor_sidebar_collapsed";
 
 function loadFrozenFromStorage(): Record<string, number[]> {
   if (typeof window === "undefined") return {};
@@ -71,6 +78,47 @@ function saveFrozenToStorage(frozen: Record<string, number[]>) {
   }
 }
 
+function loadSidebarWidth(): number {
+  if (typeof window === "undefined") return 280;
+  try {
+    const w = localStorage.getItem(SIDEBAR_WIDTH_KEY);
+    return w ? Number(w) : 280;
+  } catch {
+    return 280;
+  }
+}
+
+function saveSidebarWidth(width: number) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(SIDEBAR_WIDTH_KEY, String(width));
+  } catch {
+    // ignore
+  }
+}
+
+function loadSidebarCollapsed(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    const v = localStorage.getItem(SIDEBAR_COLLAPSED_KEY);
+    return v === "true";
+  } catch {
+    return false;
+  }
+}
+
+function saveSidebarCollapsed(collapsed: boolean) {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(collapsed));
+  } catch {
+    // ignore
+  }
+}
+
+const initialWidth = typeof window !== "undefined" ? loadSidebarWidth() : 280;
+const initialCollapsed = typeof window !== "undefined" ? loadSidebarCollapsed() : false;
+
 export const useTutorStore = create<TutorState>((set, get) => ({
   currentTense: "present-simple",
   currentView: "theory",
@@ -80,15 +128,25 @@ export const useTutorStore = create<TutorState>((set, get) => ({
   answers: {},
   frozenIds: {},
   sidebarOpen: false,
+  sidebarCollapsed: initialCollapsed,
+  sidebarWidth: initialWidth,
 
   setView: (view) => set({ currentView: view }),
-  setCurrentTense: (tense) => set({
-    currentTense: tense,
-    currentView: "theory",
-    answers: {},
-    selectedExercises: [],
-    exerciseCount: 10,
-  }),
+  setCurrentTense: (tense) => {
+    const { currentView, selectedExercises } = get();
+    // If user is in the middle of a test, don't reset — block navigation
+    if ((currentView === "exercise" || currentView === "complete") && selectedExercises.length > 0) {
+      // Return special signal: caller should show warning
+      return "in-progress";
+    }
+    set({
+      currentTense: tense,
+      currentView: "theory",
+      answers: {},
+      selectedExercises: [],
+      exerciseCount: 10,
+    });
+  },
   setProgressMap: (progressMap) => set({ progressMap }),
   setExerciseCount: (count) => set({ exerciseCount: count }),
   setSelectedExercises: (exercises) => set({ selectedExercises: exercises }),
@@ -97,6 +155,16 @@ export const useTutorStore = create<TutorState>((set, get) => ({
   resetAnswers: () => set({ answers: {} }),
   toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
   setSidebarOpen: (open) => set({ sidebarOpen: open }),
+  toggleSidebarCollapsed: () => {
+    const newCollapsed = !get().sidebarCollapsed;
+    saveSidebarCollapsed(newCollapsed);
+    set({ sidebarCollapsed: newCollapsed });
+  },
+  setSidebarWidth: (width) => {
+    const clamped = Math.max(200, Math.min(500, width));
+    saveSidebarWidth(clamped);
+    set({ sidebarWidth: clamped });
+  },
 
   loadFrozen: () => {
     const frozen = loadFrozenFromStorage();
@@ -136,4 +204,19 @@ export const useTutorStore = create<TutorState>((set, get) => ({
   },
 
   goToTheory: () => set({ currentView: "theory", answers: {}, selectedExercises: [] }),
+
+  markTenseStudied: (tenseId) => {
+    // Update local progress optimistically
+    set((state) => ({
+      progressMap: {
+        ...state.progressMap,
+        [tenseId]: {
+          ...state.progressMap[tenseId],
+          tense: tenseId,
+          theoryDone: true,
+          completed: true,
+        },
+      },
+    }));
+  },
 }));

@@ -1,7 +1,8 @@
 import type { Exercise } from "@/lib/tutor-data";
 
 // ============================================================
-// Past Continuous — 50 exercises (18 MC, 15 fill, 17 translate)
+// Past Continuous — 100 exercises (36 MC, 31 fill, 33 translate)
+// 1–50: original set  |  51–100: extended set (missing topics)
 // ============================================================
 
 export const pastContinuousExercises: Exercise[] = [
@@ -67,4 +68,102 @@ export const pastContinuousExercises: Exercise[] = [
   { id: 48, tense: "past-continuous", type: "translate_ru_en", question: "Он пытался уснуть, но не мог.", correctAnswer: "He was trying to sleep, but he couldn't", explanation: "Процесс: was trying to sleep. Couldn't = Past Simple от can." },
   { id: 49, tense: "past-continuous", type: "translate_ru_en", question: "Пока мы гуляли, мы видели старого друга.", correctAnswer: "While we were walking, we saw an old friend", explanation: "While + фон = were walking. Краткое = saw (Past Simple)." },
   { id: 50, tense: "past-continuous", type: "translate_ru_en", question: "Я обедал, когда она пришла.", correctAnswer: "I was having lunch when she arrived", explanation: "Have lunch = есть → was having lunch. Пришла = arrived (Past Simple)." },
+
+  // ===== NEW: Exercises 51–100 (18 MC, 16 fill, 16 translate) =====
+
+  // ===== Multiple Choice (51–68) =====
+  // Wh-вопросы (What / Where / Who / Why / How)
+  { id: 51, tense: "past-continuous", type: "multiple_choice", question: "What ___ at this time yesterday?", options: ["were you doing", "did you do", "was you doing", "you were doing"], correctAnswer: "were you doing", explanation: "What + you → were. Wh-вопрос в Past Continuous: What were you doing?" },
+  { id: 52, tense: "past-continuous", type: "multiple_choice", question: "Where ___ when you saw her?", options: ["was she going", "did she go", "she was going", "was she go"], correctAnswer: "was she going", explanation: "Where + she → was. Wh-вопрос: Where was she going?" },
+  { id: 53, tense: "past-continuous", type: "multiple_choice", question: "Who ___ to the teacher when you entered the classroom?", options: ["was talking", "did talk", "were talking", "talked"], correctAnswer: "was talking", explanation: "Who как подлежащее = was talking (Past Continuous). НЕ Who did talk!" },
+  { id: 54, tense: "past-continuous", type: "multiple_choice", question: "Why ___ so fast? Were they late?", options: ["were they running", "did they run", "was they running", "they were running"], correctAnswer: "were they running", explanation: "Why + they → were. Wh-вопрос: Why were they running?" },
+  { id: 55, tense: "past-continuous", type: "multiple_choice", question: "How ___ when you visited him in hospital?", options: ["was he feeling", "did he feel", "were he feeling", "he was feeling"], correctAnswer: "was he feeling", explanation: "How + he → was. Wh-вопрос: How was he feeling?" },
+  // think: изменение значения (was thinking = размышлять)
+  { id: 56, tense: "past-continuous", type: "multiple_choice", question: "I ___ about my future when she called.", options: ["was thinking", "thought", "was think", "thinked"], correctAnswer: "was thinking", explanation: "Think в значении «размышлять» можно в Continuous: was thinking about my future." },
+  // see: изменение значения (was seeing = встречаться / быть на приёме)
+  { id: 57, tense: "past-continuous", type: "multiple_choice", question: "She ___ the doctor when I phoned her.", options: ["was seeing", "saw", "was see", "see"], correctAnswer: "was seeing", explanation: "See в значении «быть на приёме» можно в Continuous: was seeing the doctor." },
+  // Ошибка: while + Past Simple
+  { id: 58, tense: "past-continuous", type: "multiple_choice", question: "While I ___ a book, the phone rang.", options: ["was reading", "read", "was read", "reading"], correctAnswer: "was reading", explanation: "После while нужен Past Continuous (was reading). «While I read» — ошибка, while требует длительного действия." },
+  // Ошибка: «was went»
+  { id: 59, tense: "past-continuous", type: "multiple_choice", question: "Which sentence contains a GRAMMATICAL ERROR?", options: ["I was going home when it started raining.", "I was went home yesterday.", "I went home at 5 pm.", "She was walking to school."], correctAnswer: "I was went home yesterday.", explanation: "«was went» — грамматическая ошибка! Нельзя ставить was перед Past Simple. Правильно: I went или I was going." },
+  // Ошибка: привычка ≠ Past Continuous
+  { id: 60, tense: "past-continuous", type: "multiple_choice", question: "When I was a child, I ___ football every day.", options: ["played", "was playing", "were playing", "am playing"], correctAnswer: "played", explanation: "Every day = регулярная привычка в прошлом → Past Simple (played), НЕ Past Continuous!" },
+  // Ошибка: «didn't was»
+  { id: 61, tense: "past-continuous", type: "multiple_choice", question: "She ___ sleeping when I called.", options: ["wasn't", "didn't was", "not was", "didn't"], correctAnswer: "wasn't", explanation: "Отрицание Past Continuous: wasn't sleeping. «didn't was» — грамматическая ошибка." },
+  // was hoping — вежливая форма
+  { id: 62, tense: "past-continuous", type: "multiple_choice", question: "I ___ you could come to the party.", options: ["was hoping", "hoped", "were hoping", "did hope"], correctAnswer: "was hoping", explanation: "Was hoping = вежливая форма в прошлом, смягчает просьбу." },
+  // was constantly — раздражение (синоним always)
+  { id: 63, tense: "past-continuous", type: "multiple_choice", question: "She ___ complaining about the noise!", options: ["was constantly", "constantly was", "did constantly", "was"], correctAnswer: "was constantly", explanation: "Was constantly + V-ing = раздражение по поводу постоянного действия (синоним was always)." },
+  // Прерванные действия с разными подлежащими
+  { id: 64, tense: "past-continuous", type: "multiple_choice", question: "While I ___ dinner, my friend ___ at the door.", options: ["was cooking / knocked", "cooked / knocked", "was cooking / was knocking", "cooked / was knocking"], correctAnswer: "was cooking / knocked", explanation: "While + фон (was cooking). Прерывание другим подлежащим = knocked (Past Simple)." },
+  // Сложная комбинация when/while
+  { id: 65, tense: "past-continuous", type: "multiple_choice", question: "While we ___ the film, the electricity ___ and we ___ in the dark.", options: ["were watching / went out / were sitting", "watched / went out / sat", "were watching / was going out / were sitting", "watched / was going out / sat"], correctAnswer: "were watching / went out / were sitting", explanation: "While + фон = were watching. Прерывание = went out. После — продолжали сидеть = were sitting." },
+  // Несколько одновременных фоновых действий
+  { id: 66, tense: "past-continuous", type: "multiple_choice", question: "When we arrived at the beach, the sun ___, the waves ___, and people ___ volleyball.", options: ["was shining / were crashing / were playing", "shone / crashed / played", "was shining / crashed / were playing", "shone / were crashing / played"], correctAnswer: "was shining / were crashing / were playing", explanation: "Описание обстановки — все фоновые действия → Past Continuous (was shining / were crashing / were playing)." },
+  // «this time yesterday»
+  { id: 67, tense: "past-continuous", type: "multiple_choice", question: "At this time yesterday, I ___ on a plane to London.", options: ["was sitting", "sat", "were sitting", "sit"], correctAnswer: "was sitting", explanation: "This time yesterday = точный момент в прошлом → Past Continuous (was sitting)." },
+  // Wh- + прерывание
+  { id: 68, tense: "past-continuous", type: "multiple_choice", question: "Who ___ when the fire alarm ___?", options: ["was sleeping / went off", "slept / went off", "was sleeping / was going off", "slept / was going off"], correctAnswer: "was sleeping / went off", explanation: "Фон (спал) = was sleeping. Прерывание = went off (Past Simple). Who как подлежащее = was." },
+
+  // ===== Fill in the Blank (69–84) =====
+  // Wh-вопросы
+  { id: 69, tense: "past-continuous", type: "fill_blank", question: "What ___ (you / do) this time yesterday?", correctAnswer: "were you doing", explanation: "What + you → were. Wh-вопрос: What were you doing?" },
+  { id: 70, tense: "past-continuous", type: "fill_blank", question: "Where ___ (she / go) when you met her?", correctAnswer: "was she going", explanation: "Where + she → was. Wh-вопрос: Where was she going?" },
+  { id: 71, tense: "past-continuous", type: "fill_blank", question: "Who ___ (talk) to the teacher when you entered?", correctAnswer: "was talking", explanation: "Who как подлежащее = was talking. НЕ did talk!" },
+  { id: 72, tense: "past-continuous", type: "fill_blank", question: "Why ___ (they / run) in the corridor?", correctAnswer: "were they running", explanation: "Why + they → were. Wh-вопрос: Why were they running?" },
+  // think — размышлять (Continuous)
+  { id: 73, tense: "past-continuous", type: "fill_blank", question: "I ___ (think) about my future when she called.", correctAnswer: "was thinking", explanation: "Think = «размышлять» → можно в Continuous: was thinking." },
+  // see — быть на приёме (Continuous)
+  { id: 74, tense: "past-continuous", type: "fill_blank", question: "She ___ (see) the doctor all morning yesterday.", correctAnswer: "was seeing", explanation: "See = «быть на приёме» → можно в Continuous: was seeing." },
+  // Несколько фоновых действий
+  { id: 75, tense: "past-continuous", type: "fill_blank", question: "The sun ___ (shine) and the wind ___ (blow) when we reached the top.", correctAnswer: "was shining / was blowing", explanation: "Описание обстановки → оба Past Continuous." },
+  // «this time last Sunday»
+  { id: 76, tense: "past-continuous", type: "fill_blank", question: "At this time last Sunday, we ___ (have) breakfast.", correctAnswer: "were having", explanation: "We → were. This time last Sunday → were having breakfast." },
+  // was constantly — раздражение
+  { id: 77, tense: "past-continuous", type: "fill_blank", question: "He ___ (constantly / interrupt) me during the presentation!", correctAnswer: "was constantly interrupting", explanation: "Was constantly + V-ing = раздражение (синоним was always)." },
+  // was hoping — вежливая форма
+  { id: 78, tense: "past-continuous", type: "fill_blank", question: "I ___ (hope) you could lend me some money.", correctAnswer: "was hoping", explanation: "Was hoping = вежливая форма просьбы в прошлом." },
+  // Три параллельных фона
+  { id: 79, tense: "past-continuous", type: "fill_blank", question: "The wind ___ (blow), the rain ___ (fall), and we ___ (wait) for a taxi.", correctAnswer: "was blowing / was falling / were waiting", explanation: "Несколько параллельных действий → все Past Continuous." },
+  // Отрицание + was doing
+  { id: 80, tense: "past-continuous", type: "fill_blank", question: "She ___ (not / feel) well yesterday, so she ___ (stay) in bed all day.", correctAnswer: "wasn't feeling / was staying", explanation: "Не чувствовала (процесс) = wasn't feeling. Оставалась = was staying." },
+  // Привычка = Past Simple
+  { id: 81, tense: "past-continuous", type: "fill_blank", question: "When I was young, I ___ (ride) my bike every weekend.", correctAnswer: "rode", explanation: "Every weekend = регулярная привычка → Past Simple (rode), НЕ was riding!" },
+  // Прерванное действие с разными подлежащими
+  { id: 82, tense: "past-continuous", type: "fill_blank", question: "While he ___ (sleep), his brother ___ (eat) all the cookies.", correctAnswer: "was sleeping / ate", explanation: "While + фон = was sleeping. Прерывание другим лицом = ate (Past Simple)." },
+  // How + was feeling
+  { id: 83, tense: "past-continuous", type: "fill_blank", question: "How ___ (he / feel) when you visited him in hospital?", correctAnswer: "was he feeling", explanation: "How + he → was. Wh-вопрос: How was he feeling?" },
+  // Stative verb (know) + Continuous
+  { id: 84, tense: "past-continuous", type: "fill_blank", question: "I ___ (not / know) she was there. I ___ (look) for her everywhere!", correctAnswer: "didn't know / was looking", explanation: "Know = stative → didn't know (Past Simple). Искать = активный процесс → was looking." },
+
+  // ===== Translate RU → EN (85–100) =====
+  // Wh-вопросы
+  { id: 85, tense: "past-continuous", type: "translate_ru_en", question: "Куда ты шёл вчера вечером?", correctAnswer: "Where were you going yesterday evening", explanation: "Куда = Where. Wh-вопрос: Where were you going?" },
+  { id: 86, tense: "past-continuous", type: "translate_ru_en", question: "Кто разговаривал с тобой на вечеринке?", correctAnswer: "Who was talking to you at the party", explanation: "Кто как подлежащее = Who was talking. НЕ Who did talk!" },
+  { id: 87, tense: "past-continuous", type: "translate_ru_en", question: "Почему они бежали по коридору?", correctAnswer: "Why were they running in the corridor", explanation: "Почему = Why. Wh-вопрос: Why were they running?" },
+  { id: 88, tense: "past-continuous", type: "translate_ru_en", question: "Как он себя чувствовал после болезни?", correctAnswer: "How was he feeling after the illness", explanation: "Как = How. Wh-вопрос: How was he feeling?" },
+  // think — размышлять
+  { id: 89, tense: "past-continuous", type: "translate_ru_en", question: "Я размышлял о своём будущем, когда она позвонила.", correctAnswer: "I was thinking about my future when she called", explanation: "Размышлял = was thinking (Continuous). Позвонила = called (прерывание)." },
+  // see — быть на приёме
+  { id: 90, tense: "past-continuous", type: "translate_ru_en", question: "Она была на приёме у врача весь день.", correctAnswer: "She was seeing the doctor all day", explanation: "Быть на приёме = was seeing the doctor (Continuous). Весь день = all day." },
+  // Прерванное действие (while)
+  { id: 91, tense: "past-continuous", type: "translate_ru_en", question: "Пока я читал книгу, зазвонил телефон.", correctAnswer: "While I was reading a book, the phone rang", explanation: "While + фон = was reading. Краткое прерывание = rang (Past Simple)." },
+  // this time yesterday
+  { id: 92, tense: "past-continuous", type: "translate_ru_en", question: "Что ты делал в это время вчера?", correctAnswer: "What were you doing this time yesterday", explanation: "В это время вчера = this time yesterday → Past Continuous: What were you doing?" },
+  // this time last week
+  { id: 93, tense: "past-continuous", type: "translate_ru_en", question: "В это время на прошлой неделе мы отдыхали на пляже.", correctAnswer: "At this time last week we were relaxing on the beach", explanation: "At this time last week = точный момент → were relaxing (Past Continuous)." },
+  // was constantly — раздражение
+  { id: 94, tense: "past-continuous", type: "translate_ru_en", question: "Он постоянно перебивал меня на собрании!", correctAnswer: "He was constantly interrupting me in the meeting", explanation: "Постоянно = was constantly + V-ing = раздражение." },
+  // was hoping — вежливая форма
+  { id: 95, tense: "past-continuous", type: "translate_ru_en", question: "Я надеялся, что вы сможете прийти на вечеринку.", correctAnswer: "I was hoping you could come to the party", explanation: "Надеялся = was hoping = вежливая форма в прошлом." },
+  // I was thinking — вежливое предложение
+  { id: 96, tense: "past-continuous", type: "translate_ru_en", question: "Я думал, мы могли бы встретиться завтра.", correctAnswer: "I was thinking we could meet tomorrow", explanation: "I was thinking = вежливое предложение (не «считал», а «размышлял»)." },
+  // Три параллельных фона
+  { id: 97, tense: "past-continuous", type: "translate_ru_en", question: "Ветер дул, дождь шёл, а мы ждали такси.", correctAnswer: "The wind was blowing, the rain was falling, and we were waiting for a taxi", explanation: "Три параллельных действия → все Past Continuous." },
+  // Привычка = Past Simple (НЕ Continuous)
+  { id: 98, tense: "past-continuous", type: "translate_ru_en", question: "Когда я был маленьким, я играл во дворе каждый день.", correctAnswer: "When I was little, I played in the yard every day", explanation: "Каждый день = привычка → Past Simple (played), НЕ was playing!" },
+  // Отрицание в Past Continuous
+  { id: 99, tense: "past-continuous", type: "translate_ru_en", question: "Она не спала в 3 часа ночи.", correctAnswer: "She wasn't sleeping at 3 am", explanation: "Она → wasn't sleeping. В 3 часа ночи = at 3 am → Past Continuous." },
+  // Who + прерывание
+  { id: 100, tense: "past-continuous", type: "translate_ru_en", question: "Кто плакал, когда учитель вошёл в класс?", correctAnswer: "Who was crying when the teacher came into the classroom", explanation: "Кто как подлежащее = was crying. Вошёл = came (прерывание, Past Simple)." },
 ];

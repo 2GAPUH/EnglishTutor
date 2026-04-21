@@ -37,7 +37,21 @@ export const pastContinuousTheory: TheorySection[] = [
 > **Was** she reading? — Она читала?
 > **Were** they sleeping? — Они спали?
 
-⚠️ Глагол **to be** используется в прошедшей форме: **was/were** (не am/is/are!).`,
+⚠️ Глагол **to be** используется в прошедшей форме: **was/were** (не am/is/are!).
+
+### Wh-вопросы (Special Questions)
+Структура: **Wh-слово + was/were + подлежащее + V-ing?**
+
+| Wh-слово | Вопрос | Ответ |
+|----------|--------|-------|
+| **What** | What **were** you **doing** at 8 pm? | I **was watching** TV. |
+| **Where** | Where **was** she **going**? | She **was going** to the park. |
+| **Who** | Who **was** **talking** to you? | John **was talking** to me. |
+| **Why** | Why **were** they **running**? | They **were running** for the bus. |
+| **How** | How **was** he **feeling**? | He **was feeling** better. |
+
+⚠️ **Who** как подлежащее: Who **was** **crying**? (НЕ ~~Who did cry~~)
+⚠️ Не путайте: What **did** you **do**? (факт) vs What **were** you **doing**? (процесс)`,
   },
   {
     title: "Слова-маркеры (signal words)",
@@ -139,6 +153,7 @@ export const pastContinuousTheory: TheorySection[] = [
 ### 3. Вежливые вопросы
 > I **was wondering** if you could help me. — Я хотел спросить, не могли бы вы помочь.
 > I **was hoping** to see you. — Я надеялся вас увидеть.
+> I **was thinking** we could meet tomorrow. — Я думал, мы могли бы встретиться завтра.
 
 ### 4. Типичные ошибки
 | Ошибка | Правильно |

@@ -60,3 +60,5 @@ Thumbs.db
 
 # Lock files (use bun.lock or package-lock.json consistently)
 # Keep only one lockfile
+bun.lock
+prisma/db/custom.db
