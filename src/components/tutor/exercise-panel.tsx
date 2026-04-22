@@ -8,11 +8,13 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { PenLine, Send, Copy, Check, Lightbulb } from "lucide-react";
+import { PenLine, Send, Copy, Check, Lightbulb, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { toast } from "sonner";
 import type { Exercise, ExerciseType } from "@/lib/tutor-data";
+import { getHintsByIds, HINT_CATEGORY_COLORS, HINT_CATEGORY_LABELS } from "@/lib/hints";
+import type { Hint } from "@/lib/hints";
 
 interface ExercisePanelProps {
   className?: string;
@@ -255,7 +257,7 @@ function shuffleWithSeed<T>(arr: T[], seed: number): T[] {
 }
 
 function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
-  const [hintOpen, setHintOpen] = useState(false);
+  const [hintsOpen, setHintsOpen] = useState(false);
 
   const typeLabel: Record<ExerciseType, { label: string; color: string }> = {
     multiple_choice: { label: "Выбор", color: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400" },
@@ -264,6 +266,16 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
   };
 
   const meta = typeLabel[exercise.type];
+
+  // Resolve hints from hintIds
+  const resolvedHints = useMemo<Hint[]>(() => {
+    return exercise.hintIds ? getHintsByIds(exercise.hintIds) : [];
+  }, [exercise.hintIds]);
+
+  const hasLegacyHint = !!exercise.hint;
+  const hasNewHints = resolvedHints.length > 0;
+  const totalHintCount = resolvedHints.length + (hasLegacyHint ? 1 : 0);
+  const hasAnyHints = totalHintCount > 0;
 
   // Shuffle multiple choice options using exercise.id as seed (deterministic)
   const shuffledOptions = useMemo(() => {
@@ -282,20 +294,39 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
             <span className="truncate">{exercise.question}</span>
           </CardTitle>
           <div className="flex items-center gap-1.5 shrink-0">
-            {exercise.hint && (
+            {hasAnyHints && (
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setHintOpen(!hintOpen)}
+                onClick={() => setHintsOpen(!hintsOpen)}
                 className={cn(
                   "h-7 px-2 gap-1.5 text-xs rounded-full transition-colors",
-                  hintOpen
+                  hintsOpen
                     ? "bg-amber-100 text-amber-700 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400"
                     : "text-muted-foreground hover:text-amber-600 hover:bg-amber-50 dark:hover:text-amber-400 dark:hover:bg-amber-900/20"
                 )}
               >
-                <Lightbulb className={cn("h-3.5 w-3.5", hintOpen && "fill-current")} />
-                <span className="hidden sm:inline">{hintOpen ? "Скрыть" : "Подсказка"}</span>
+                <Lightbulb className={cn("h-3.5 w-3.5", hintsOpen && "fill-current")} />
+                <span className="hidden sm:inline">{hintsOpen ? "Скрыть" : "Подсказки"}</span>
+                {totalHintCount > 0 && (
+                  <Badge
+                    variant="secondary"
+                    className={cn(
+                      "h-4 min-w-[18px] px-1 text-[10px] font-bold",
+                      hintsOpen
+                        ? "bg-amber-200 text-amber-800 dark:bg-amber-800/40 dark:text-amber-300"
+                        : ""
+                    )}
+                  >
+                    {totalHintCount}
+                  </Badge>
+                )}
+                <ChevronDown
+                  className={cn(
+                    "h-3 w-3 transition-transform duration-200 hidden sm:block",
+                    hintsOpen && "rotate-180"
+                  )}
+                />
               </Button>
             )}
             <Badge variant="secondary" className={cn("text-xs", meta.color)}>
@@ -305,13 +336,44 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
-        {/* Hint */}
-        {hintOpen && exercise.hint && (
-          <div className="bg-amber-50 dark:bg-amber-900/15 border border-amber-200 dark:border-amber-800/40 rounded-lg p-3 flex gap-2.5">
-            <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5 fill-current" />
-            <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-              {exercise.hint}
-            </p>
+        {/* Hints panel */}
+        {hintsOpen && hasAnyHints && (
+          <div className="bg-amber-50 dark:bg-amber-900/15 border border-amber-200 dark:border-amber-800/40 rounded-lg p-3 space-y-2">
+            {/* Resolved hints from hintIds */}
+            {resolvedHints.map((hint, i) => (
+              <div key={hint.id} className="flex gap-2.5">
+                <div className="shrink-0 mt-0.5 flex flex-col items-center gap-1">
+                  <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400 fill-current" />
+                  <Badge
+                    variant="secondary"
+                    className={cn("text-[10px] px-1.5 py-0 font-medium leading-tight", HINT_CATEGORY_COLORS[hint.category])}
+                  >
+                    {HINT_CATEGORY_LABELS[hint.category]}
+                  </Badge>
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-amber-800 dark:text-amber-200 mb-0.5">
+                    {hint.title}
+                  </p>
+                  <p className="text-sm text-amber-700 dark:text-amber-300 leading-relaxed">
+                    {hint.text}
+                  </p>
+                </div>
+              </div>
+            ))}
+
+            {/* Legacy hint (if any) */}
+            {hasLegacyHint && hasNewHints && (
+              <div className="border-t border-amber-200/60 dark:border-amber-700/40 my-1" />
+            )}
+            {hasLegacyHint && (
+              <div className="flex gap-2.5">
+                <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5 fill-current" />
+                <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                  {exercise.hint}
+                </p>
+              </div>
+            )}
           </div>
         )}
 

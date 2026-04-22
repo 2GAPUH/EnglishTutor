@@ -30,6 +30,7 @@ export interface Exercise {
   correctAnswer: string;
   explanation: string;
   hint?: string;
+  hintIds?: string[];
 }
 
 export interface TheorySection {
