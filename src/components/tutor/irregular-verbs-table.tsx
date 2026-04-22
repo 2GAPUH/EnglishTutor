@@ -9,9 +9,11 @@ import { cn } from "@/lib/utils";
 
 interface IrregularVerbsTableProps {
   className?: string;
+  /** Compact mode: small font, max height with scroll, for embedding inside theory */
+  compact?: boolean;
 }
 
-export function IrregularVerbsTable({ className }: IrregularVerbsTableProps) {
+export function IrregularVerbsTable({ className, compact }: IrregularVerbsTableProps) {
   const [search, setSearch] = useState("");
 
   const filtered = useMemo(() => {
@@ -27,15 +29,15 @@ export function IrregularVerbsTable({ className }: IrregularVerbsTableProps) {
   }, [search]);
 
   return (
-    <div className={cn("space-y-3", className)}>
+    <div className={cn("space-y-2", compact && "space-y-1.5", className)}>
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className={cn("absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground", compact ? "h-3 w-3" : "h-4 w-4")} />
         <Input
           placeholder="Поиск по форме или переводу..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-9"
+          className={cn(compact && "pl-8 h-8 text-xs")}
         />
       </div>
 
@@ -47,24 +49,30 @@ export function IrregularVerbsTable({ className }: IrregularVerbsTableProps) {
       </p>
 
       {/* Table */}
-      <Card>
-        <div className="overflow-x-auto rounded-lg">
-          <table className="w-full text-sm border-collapse">
-            <thead>
+      <Card className={compact && "shadow-none"}>
+        <div
+          className={cn(
+            "overflow-x-auto rounded-lg",
+            compact && "max-h-72 overflow-y-auto"
+          )}
+          style={compact ? { scrollbarWidth: "thin" } : undefined}
+        >
+          <table className={cn("w-full border-collapse", compact ? "text-xs" : "text-sm")}>
+            <thead className="sticky top-0 z-10">
               <tr className="bg-muted/80 border-b">
-                <th className="px-4 py-2.5 text-left font-semibold text-foreground whitespace-nowrap">V1 (Infinitive)</th>
-                <th className="px-4 py-2.5 text-left font-semibold text-foreground whitespace-nowrap">V2 (Past Simple)</th>
-                <th className="px-4 py-2.5 text-left font-semibold text-foreground whitespace-nowrap">V3 (Past Participle)</th>
-                <th className="px-4 py-2.5 text-left font-semibold text-foreground whitespace-nowrap">Перевод</th>
+                <th className={cn("text-left font-semibold text-foreground whitespace-nowrap", compact ? "px-2 py-1.5" : "px-4 py-2.5")}>V1</th>
+                <th className={cn("text-left font-semibold text-foreground whitespace-nowrap", compact ? "px-2 py-1.5" : "px-4 py-2.5")}>V2</th>
+                <th className={cn("text-left font-semibold text-foreground whitespace-nowrap", compact ? "px-2 py-1.5" : "px-4 py-2.5")}>V3</th>
+                <th className={cn("text-left font-semibold text-foreground whitespace-nowrap", compact ? "px-2 py-1.5" : "px-4 py-2.5")}>Перевод</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((verb, idx) => (
-                <VerbRow key={verb.v1} verb={verb} idx={idx} />
+                <VerbRow key={verb.v1} verb={verb} idx={idx} compact={compact} />
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-4 py-8 text-center text-muted-foreground">
+                  <td colSpan={4} className={cn("text-center text-muted-foreground", compact ? "px-2 py-4" : "px-4 py-8")}>
                     Ничего не найдено
                   </td>
                 </tr>
@@ -77,7 +85,7 @@ export function IrregularVerbsTable({ className }: IrregularVerbsTableProps) {
   );
 }
 
-function VerbRow({ verb, idx }: { verb: IrregularVerb; idx: number }) {
+function VerbRow({ verb, idx, compact }: { verb: IrregularVerb; idx: number; compact?: boolean }) {
   return (
     <tr
       className={cn(
@@ -85,10 +93,10 @@ function VerbRow({ verb, idx }: { verb: IrregularVerb; idx: number }) {
         idx % 2 === 0 && "bg-muted/10"
       )}
     >
-      <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{verb.v1}</td>
-      <td className="px-4 py-2.5 text-foreground/90 whitespace-nowrap">{verb.v2}</td>
-      <td className="px-4 py-2.5 text-foreground/90 whitespace-nowrap">{verb.v3}</td>
-      <td className="px-4 py-2.5 text-muted-foreground whitespace-nowrap">{verb.ru}</td>
+      <td className={cn("font-medium text-foreground whitespace-nowrap", compact ? "px-2 py-1" : "px-4 py-2.5")}>{verb.v1}</td>
+      <td className={cn("text-foreground/90 whitespace-nowrap", compact ? "px-2 py-1" : "px-4 py-2.5")}>{verb.v2}</td>
+      <td className={cn("text-foreground/90 whitespace-nowrap", compact ? "px-2 py-1" : "px-4 py-2.5")}>{verb.v3}</td>
+      <td className={cn("text-muted-foreground whitespace-nowrap", compact ? "px-2 py-1" : "px-4 py-2.5")}>{verb.ru}</td>
     </tr>
   );
 }

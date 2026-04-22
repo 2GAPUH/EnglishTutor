@@ -107,7 +107,7 @@ export function TheoryPanel({ className }: TheoryPanelProps) {
             </CardHeader>
             <CardContent className="text-foreground/90 space-y-3">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{section.content}</ReactMarkdown>
-              {section.embedVerbs && <IrregularVerbsTable />}
+              {section.embedVerbs && <IrregularVerbsTable compact />}
             </CardContent>
           </Card>
         ))}
