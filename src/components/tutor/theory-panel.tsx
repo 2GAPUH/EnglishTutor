@@ -5,11 +5,12 @@ import { useTutorStore } from "@/store/tutor-store";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, ArrowRight, CheckCircle2 } from "lucide-react";
+import { BookOpen, ArrowRight, CheckCircle2, BookMarked } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import type { Components } from "react-markdown";
+import { IrregularVerbsTable } from "@/components/tutor/irregular-verbs-table";
 
 const markdownComponents: Components = {
   table: ({ children }) => (
@@ -51,10 +52,20 @@ interface TheoryPanelProps {
   className?: string;
 }
 
+/** Tenses that use V2 or V3 verb forms and need a link to irregular verbs */
+const TENSES_WITH_IRREGULAR: TenseId[] = [
+  "past-simple",
+  "present-perfect",
+  "present-perfect-continuous",
+  "past-perfect",
+  "past-perfect-continuous",
+];
+
 export function TheoryPanel({ className }: TheoryPanelProps) {
-  const { currentTense, setView, progressMap } = useTutorStore();
+  const { currentTense, setView, progressMap, goToIrregularVerbs } = useTutorStore();
   const tenseData = getTenseData(currentTense);
   const isDone = progressMap[currentTense]?.theoryDone ?? false;
+  const showIrregularButton = TENSES_WITH_IRREGULAR.includes(currentTense);
 
   const handleMarkDone = async () => {
     await fetch("/api/tutor/theory", {
@@ -94,12 +105,30 @@ export function TheoryPanel({ className }: TheoryPanelProps) {
                 {section.title}
               </CardTitle>
             </CardHeader>
-            <CardContent className="text-foreground/90">
+            <CardContent className="text-foreground/90 space-y-3">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{section.content}</ReactMarkdown>
+              {section.embedVerbs && <IrregularVerbsTable />}
             </CardContent>
           </Card>
         ))}
       </div>
+
+      {/* Link to irregular verbs for tenses that use V2/V3 */}
+      {showIrregularButton && (
+        <Card className="border-dashed border-primary/30">
+          <CardContent className="py-4 flex items-center gap-3">
+            <BookMarked className="h-5 w-5 text-primary shrink-0" />
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium">Неправильные глаголы</p>
+              <p className="text-xs text-muted-foreground">Для этого времени нужно знать формы неправильных глаголов</p>
+            </div>
+            <Button variant="outline" size="sm" onClick={goToIrregularVerbs} className="gap-2 shrink-0">
+              <BookMarked className="h-3.5 w-3.5" />
+              Таблица и тест
+            </Button>
+          </CardContent>
+        </Card>
+      )}
 
       <div className="flex justify-end pt-4">
         <Button onClick={handleMarkDone} size="lg" className="gap-2">

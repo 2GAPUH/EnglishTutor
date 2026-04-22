@@ -7,6 +7,7 @@ import { TheoryPanel } from "@/components/tutor/theory-panel";
 import { TestSetupPanel } from "@/components/tutor/test-setup-panel";
 import { ExercisePanel, CompletePanel } from "@/components/tutor/exercise-panel";
 import { BlockedPanel } from "@/components/tutor/blocked-panel";
+import { IrregularVerbsPanel } from "@/components/tutor/irregular-verbs-panel";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -288,6 +289,7 @@ export default function TutorPage() {
               {currentView === "exercise" && <ExercisePanel />}
               {currentView === "complete" && <CompletePanel />}
               {currentView === "blocked" && <BlockedPanel />}
+              {currentView === "irregular-verbs" && <IrregularVerbsPanel />}
             </div>
           </ScrollArea>
         </main>

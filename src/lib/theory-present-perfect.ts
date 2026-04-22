@@ -27,7 +27,12 @@ export const presentPerfectTheory: TheorySection[] = [
 - Правильные глаголы: **V + ed** → worked, played, finished
 - Неправильные глаголы: нужно учить! → go→**gone**, see→**seen**, write→**written**
 
-### Отрицание (−)
+Неправильные глаголы нужно **учить наизусть**! Используйте таблицу ниже для быстрого поиска и повторения.`,
+    embedVerbs: true,
+  },
+  {
+    title: "Отрицание и вопросы",
+    content: `### Отрицание (−)
 | Лицо | Форма |
 |------|-------|
 | I / You / We / They | **haven't + V3** — I **haven't** finished |

@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { BLOCKS, TENSE_NAMES, type TenseId } from "@/lib/tutor-data";
 import { useTutorStore, type TenseProgressInfo } from "@/store/tutor-store";
-import { CheckCircle2, Circle, Lock, BookOpen, PenLine, Trophy, Award, Check } from "lucide-react";
+import { CheckCircle2, Circle, Lock, BookOpen, PenLine, Trophy, Award, Check, BookMarked } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +26,7 @@ interface ProgressSidebarProps {
 }
 
 export function ProgressSidebar({ className, onSelectTense }: ProgressSidebarProps) {
-  const { currentTense, progressMap, setCurrentTense } = useTutorStore();
+  const { currentTense, progressMap, currentView, setCurrentTense, goToIrregularVerbs } = useTutorStore();
 
   const handleSelect = (tenseId: TenseId) => {
     if (onSelectTense) {
@@ -57,6 +57,27 @@ export function ProgressSidebar({ className, onSelectTense }: ProgressSidebarPro
               isUnlocked={blockIdx === 0 || !!progressMap[block.tenses[0]]?.theoryDone}
             />
           ))}
+
+          {/* Дополнительная информация */}
+          <Separator className="my-2" />
+          <div>
+            <p className="px-2.5 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Дополнительная информация
+            </p>
+            <button
+              onClick={goToIrregularVerbs}
+              className={cn(
+                "w-full flex items-center gap-2 px-2.5 py-2 rounded-md text-sm transition-colors",
+                currentView === "irregular-verbs"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "hover:bg-muted text-foreground"
+              )}
+            >
+              <BookMarked className="h-4 w-4 shrink-0" />
+              <span>Неправильные глаголы</span>
+              <Badge variant="secondary" className="text-[10px] px-1.5 py-0 ml-auto">87</Badge>
+            </button>
+          </div>
         </div>
       </ScrollArea>
     </div>

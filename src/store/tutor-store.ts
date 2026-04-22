@@ -2,7 +2,7 @@ import { create } from "zustand";
 import type { TenseId, Exercise } from "@/lib/tutor-data";
 import { TENSE_ORDER } from "@/lib/tutor-data";
 
-export type ViewType = "theory" | "setup" | "exercise" | "complete" | "blocked";
+export type ViewType = "theory" | "setup" | "exercise" | "complete" | "blocked" | "irregular-verbs";
 
 export interface TenseProgressInfo {
   tense: TenseId;
@@ -52,6 +52,7 @@ interface TutorState {
 
   goToNextTense: () => TenseId | null;
   goToTheory: () => void;
+  goToIrregularVerbs: () => void;
   markTenseStudied: (tenseId: TenseId) => void;
 }
 
@@ -204,6 +205,8 @@ export const useTutorStore = create<TutorState>((set, get) => ({
   },
 
   goToTheory: () => set({ currentView: "theory", answers: {}, selectedExercises: [] }),
+
+  goToIrregularVerbs: () => set({ currentView: "irregular-verbs", answers: {}, selectedExercises: [] }),
 
   markTenseStudied: (tenseId) => {
     // Update local progress optimistically
