@@ -1185,6 +1185,191 @@ const pastPerfectContinuousHints: Hint[] = [
 ];
 
 // ============================================================
+// Future Simple Hints
+// ============================================================
+const futureSimpleHints: Hint[] = [
+  // --- Formula (4) ---
+  {
+    id: "fts-formula",
+    tense: "future-simple",
+    category: "formula",
+    title: "will + V1 (утверждение)",
+    text: "Все лица одинаковы: I will go, she will go, they will go. Will + глагол в начальной форме (V1). I'll go = сокращённая форма.",
+  },
+  {
+    id: "fts-negative",
+    tense: "future-simple",
+    category: "negation",
+    title: "won't + V1 (отрицание)",
+    text: "Отрицание: will not (won't) + V1. I won't go. She won't come. They won't agree. Won't = will not. После won't глагол в V1!",
+  },
+  {
+    id: "fts-question",
+    tense: "future-simple",
+    category: "question",
+    title: "Will + подлежащее + V1?",
+    text: "Вопрос: Will + подлежащее + V1? Will you come? Will she agree? Will they help? Краткий ответ: Yes, I will. / No, I won't.",
+  },
+  {
+    id: "fts-wh-question",
+    tense: "future-simple",
+    category: "question",
+    title: "Wh- + will + подлежащее + V1?",
+    text: "Специальный вопрос: What will you do? Where will she go? When will they arrive? How will he get there? Why will you leave?",
+  },
+
+  // --- Signal words (4) ---
+  {
+    id: "fts-signal-tomorrow",
+    tense: "future-simple",
+    category: "signal-words",
+    title: "tomorrow, next week/month, soon",
+    text: "tomorrow, next week, next month, next year, soon, the day after tomorrow — маркеры будущего времени. Но: при заранее запланированном действии → be going to или Present Continuous.",
+  },
+  {
+    id: "fts-signal-in",
+    tense: "future-simple",
+    category: "signal-words",
+    title: "in + период (in 5 minutes, in 2 years)",
+    text: "in 5 minutes, in two hours, in a week, in 3 years — через определённый период. I'll be back in 10 minutes. She'll finish in an hour.",
+  },
+  {
+    id: "fts-signal-prediction",
+    tense: "future-simple",
+    category: "signal-words",
+    title: "I think, I believe, probably, definitely",
+    text: "I think it will rain. I believe she will come. He'll probably win. They'll definitely agree. Эти слова часто сопровождают предсказания → Future Simple.",
+  },
+  {
+    id: "fts-signal-time-clauses",
+    tense: "future-simple",
+    category: "signal-words",
+    title: "when, before, after, until, as soon as + Present Simple",
+    text: "В придаточных времени: when I arrive (НЕ will arrive), before she comes, after they leave, until he returns, as soon as I finish. Главное предложение — will, придаточное — Present Simple!",
+  },
+
+  // --- Usage (6) ---
+  {
+    id: "fts-usage-onetime",
+    tense: "future-simple",
+    category: "usage",
+    title: "Одноразовое действие в будущем",
+    text: "Действие произойдёт один раз: I'll call you tomorrow. She will visit her grandmother next week. Они не являются ни планом, ни предсказанием — просто факт будущего.",
+  },
+  {
+    id: "fts-usage-spontaneous",
+    tense: "future-simple",
+    category: "usage",
+    title: "Спонтанное решение",
+    text: "Решение, принятое в момент речи: «The phone is ringing — I'll answer it!» «It's cold — I'll close the window.» Не было плана заранее → will, не be going to!",
+  },
+  {
+    id: "fts-usage-prediction",
+    tense: "future-simple",
+    category: "usage",
+    title: "Предсказание (без очевидных доказательств)",
+    text: "Мнение или догадка о будущем: I think she'll like it. He'll probably pass the exam. Без очевидных доказательств сейчас → will. С доказательствами → be going to.",
+  },
+  {
+    id: "fts-usage-promise",
+    tense: "future-simple",
+    category: "usage",
+    title: "Обещание",
+    text: "I'll call you tomorrow, I promise. I won't forget. She'll be there on time. Обещание = will / won't, даже если это намерение на будущее.",
+  },
+  {
+    id: "fts-usage-threat",
+    tense: "future-simple",
+    category: "usage",
+    title: "Угроза / предупреждение",
+    text: "I'll tell the teacher! You'll regret this! If you don't stop, I'll call the police. Угроза и предупреждение = will + V1.",
+  },
+  {
+    id: "fts-usage-offer",
+    tense: "future-simple",
+    category: "usage",
+    title: "Предложение / просьба (Shall I...? / Will you...?)",
+    text: "Предложение помощи: Shall I open the window? Shall we go? Просьба: Will you help me? Will you close the door, please? Shall = предложение для I/we (британский английский).",
+  },
+
+  // --- Special (6) ---
+  {
+    id: "fts-vs-going-to",
+    tense: "future-simple",
+    category: "special",
+    title: "Future Simple vs be going to",
+    text: "will = спонтанное решение, предсказание без доказательств, обещание. be going to = заранее запланированное, предсказание с доказательствами (Look at those clouds — it's going to rain!). План → going to, импульс → will.",
+  },
+  {
+    id: "fts-vs-present-simple",
+    tense: "future-simple",
+    category: "special",
+    title: "Future Simple vs Present Simple (расписание)",
+    text: "Расписание (поезда, самолёты, кино): The train leaves at 6 pm → Present Simple. Личное намерение: I'll take the 6 pm train → Future Simple. Расписание = факт, не личный план.",
+  },
+  {
+    id: "fts-vs-present-continuous",
+    tense: "future-simple",
+    category: "special",
+    title: "Future Simple vs Present Continuous (планы)",
+    text: "Present Continuous = договорённость с кем-то: I'm meeting John tomorrow (договорились). Future Simple = спонтанное: I'll meet John tomorrow (только что решил). Договорённость → PC, импульс → will.",
+  },
+  {
+    id: "fts-shall",
+    tense: "future-simple",
+    category: "special",
+    title: "shall для I/we в британском английском",
+    text: "Британский: I shall go. We shall see. В разговорной речи чаще will. Shall используется в предложениях: Shall we dance? Shall I help you? Американский английский — почти всегда will.",
+  },
+  {
+    id: "fts-first-conditional",
+    tense: "future-simple",
+    category: "special",
+    title: "First Conditional (if + PS, will + V1)",
+    text: "Реальное условие в будущем: If it rains, I will stay home. If you study hard, you will pass. Придаточное (if) = Present Simple, главное = will + V1. НЕ: If it will rain!",
+  },
+  {
+    id: "fts-time-clauses",
+    tense: "future-simple",
+    category: "special",
+    title: "Временные придаточные (when/if + Present Simple, NOT will)",
+    text: "When I arrive, I'll call you (НЕ when I will arrive). Before she comes, we'll prepare. After they leave, we'll clean. Until you return, I'll wait. В придаточных времени и условия — Present Simple, не will!",
+  },
+
+  // --- Stative (2) ---
+  {
+    id: "fts-stative",
+    tense: "future-simple",
+    category: "stative",
+    title: "Стативные глаголы + Future Simple",
+    text: "Стативные глаголы НЕ используются в Future Continuous: I will know (НЕ will be knowing). She will understand (НЕ will be understanding). Стативные → Future Simple.",
+  },
+  {
+    id: "fts-stative-list",
+    tense: "future-simple",
+    category: "stative",
+    title: "Список стативных глаголов",
+    text: "know, believe, want, like, love, hate, need, belong, cost, mean, understand, remember, forget, seem, appear, prefer, realise, suppose — все → Future Simple (will + V1), НЕ Future Continuous.",
+  },
+
+  // --- Other (2) ---
+  {
+    id: "fts-wont-refusal",
+    tense: "future-simple",
+    category: "special",
+    title: "won't = отказ (the car won't start)",
+    text: "Won't может выражать отказ вещи или человека что-то делать: The car won't start = машина не заводится (отказывается). She won't listen = она не слушает (отказывается). Это не будущее, а свойство/упрямство.",
+  },
+  {
+    id: "fts-no-double-future",
+    tense: "future-simple",
+    category: "special",
+    title: "Нет двойного будущего (NOT «when I will arrive»)",
+    text: "НЕ ставь will дважды: When I arrive, I'll call you ✓ (НЕ when I will arrive, I will call you). If she comes, we'll go ✓ (НЕ if she will come). Одно will на предложение — в главном!",
+  },
+];
+
+// ============================================================
 // All Hints Registry
 // ============================================================
 
@@ -1197,6 +1382,7 @@ export const ALL_HINTS: Hint[] = [
   ...pastContinuousHints,
   ...pastPerfectHints,
   ...pastPerfectContinuousHints,
+  ...futureSimpleHints,
 ];
 
 // Build index for fast lookup

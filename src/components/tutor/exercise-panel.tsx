@@ -287,11 +287,11 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
     <Card className="hover:shadow-sm transition-shadow">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between gap-2">
-          <CardTitle className="text-base font-semibold flex items-center gap-2 min-w-0">
+          <CardTitle className="text-base font-semibold flex items-center gap-2 min-w-0 overflow-hidden">
             <span className="flex items-center justify-center h-6 w-6 rounded-full bg-muted text-xs font-bold shrink-0">
               {index}
             </span>
-            <span className="truncate">{exercise.question}</span>
+            <span className="truncate flex-1 min-w-0">{exercise.question}</span>
           </CardTitle>
           <div className="flex items-center gap-1.5 shrink-0">
             {hasAnyHints && (
@@ -415,7 +415,7 @@ function ExerciseCard({ index, exercise, value, onChange }: ExerciseCardProps) {
 
         {exercise.type === "translate_ru_en" && (
           <div className="space-y-2">
-            <p className="text-sm text-muted-foreground italic">{exercise.question}</p>
+            <p className="text-sm text-muted-foreground italic break-words">{exercise.question}</p>
             <div className="flex items-center gap-2">
               <Label htmlFor={`trans-${exercise.id}`} className="text-sm text-muted-foreground shrink-0">
                 Перевод:

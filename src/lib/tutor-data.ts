@@ -117,6 +117,8 @@ import { pastContinuousTheory } from "./theory-past-continuous";
 import { pastPerfectTheory } from "./theory-past-perfect";
 import { pastPerfectContinuousTheory } from "./theory-past-perfect-continuous";
 import { pastPerfectContinuousExercises } from "./exercises/past-perfect-continuous";
+import { futureSimpleTheory } from "./theory-future-simple";
+import { futureSimpleExercises } from "./exercises/future-simple";
 
 // ============================================================
 // All Tenses
@@ -193,9 +195,9 @@ export const ALL_TENSES: Record<TenseId, TenseData> = {
     exercises: pastPerfectContinuousExercises,
   },
   "future-simple": {
-    id: "future-simple", nameEn: "Future Simple", nameRu: "Future Simple", block: "future", order: 1,
-    theory: [{ title: "Блок 3", content: "Блок будущих времён будет доступен после завершения Блоков 1 и 2." }],
-    exercises: [],
+    id: "future-simple", nameEn: "Future Simple", nameRu: "Future Simple (простое будущее)", block: "future", order: 1,
+    theory: futureSimpleTheory,
+    exercises: futureSimpleExercises,
   },
   "future-continuous": {
     id: "future-continuous", nameEn: "Future Continuous", nameRu: "Future Continuous", block: "future", order: 2,
