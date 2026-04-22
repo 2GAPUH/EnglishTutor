@@ -559,8 +559,303 @@ const presentPerfectContinuousHints: Hint[] = [
 ];
 
 // ============================================================
-// Present Final Test Hints (references to individual tense hints)
+// Past Simple Hints
 // ============================================================
+const pastSimpleHints: Hint[] = [
+  {
+    id: "pts-formula-v2",
+    tense: "past-simple",
+    category: "formula",
+    title: "V2 / V + ed (прошедшее время)",
+    text: "Все лица одинаковы: I went, she went, they went. Правильный: worked. Неправильный: went.",
+  },
+  {
+    id: "pts-negative",
+    tense: "past-simple",
+    category: "negation",
+    title: "didn't + V1 (не V2!)",
+    text: "Отрицание: didn't + V1. She didn't go (НЕ she didn't went!). После didn't глагол в начальной форме!",
+  },
+  {
+    id: "pts-question",
+    tense: "past-simple",
+    category: "question",
+    title: "Did + подлежащее + V1?",
+    text: "Вопрос: Did + you + V1? Did you see (НЕ Did you saw!). После did глагол в V1.",
+  },
+  {
+    id: "pts-wh-question",
+    tense: "past-simple",
+    category: "question",
+    title: "Wh- + did + подлежащее + V1?",
+    text: "What did you do? Where did she go? Why did he leave? How did they get there?",
+  },
+  {
+    id: "pts-to-be",
+    tense: "past-simple",
+    category: "special",
+    title: "was / were (глагол to be)",
+    text: "I/he/she/it → was. You/we/they → were. Отрицание: wasn't / weren't. Вопрос: Was/Were...?",
+  },
+  {
+    id: "pts-signal-time",
+    tense: "past-simple",
+    category: "signal-words",
+    title: "yesterday, last..., ago, in + год",
+    text: "yesterday, last night/week/month/year, 2 hours ago, in 2019 → Past Simple. Конкретное время в прошлом.",
+  },
+  {
+    id: "pts-signal-just-now",
+    tense: "past-simple",
+    category: "signal-words",
+    title: "just now, the other day",
+    text: "just now = «только что» (завершено) → Past Simple. the other day = «на днях» → Past Simple. Не путать с just + Present Perfect!",
+  },
+  {
+    id: "pts-spelling-ed",
+    tense: "past-simple",
+    category: "spelling",
+    title: "Обычно: +ed",
+    text: "work → worked, play → played, watch → watched, arrive → arrived.",
+  },
+  {
+    id: "pts-spelling-ed-double",
+    tense: "past-simple",
+    category: "spelling",
+    title: "Краткий гласный + 1 согласная → удваиваем +ed",
+    text: "stop → stopped, plan → planned. Но: pack → packed (ck = 2 согласных), cook → cooked (2 гласных).",
+  },
+  {
+    id: "pts-spelling-ed-y",
+    tense: "past-simple",
+    category: "spelling",
+    title: "согласная + y → -ied",
+    text: "study → studied, carry → carried, try → tried. Но: play → played (гласная + y).",
+  },
+  {
+    id: "pts-spelling-ed-double-l",
+    tense: "past-simple",
+    category: "spelling",
+    title: "Британский: l удваивается после краткого гласного",
+    text: "travel → travelled, cancel → cancelled (брит.). Американский: traveled, canceled.",
+  },
+  {
+    id: "pts-irregular",
+    tense: "past-simple",
+    category: "spelling",
+    title: "Неправильные глаголы (V2)",
+    text: "go→went, see→saw, eat→ate, write→wrote, buy→bought, make→made, take→took, give→gave.",
+  },
+  {
+    id: "pts-irregular-common",
+    tense: "past-simple",
+    category: "spelling",
+    title: "Частые неправильные глаголы",
+    text: "come→came, get→got, have→had, leave→left, meet→met, teach→taught, bring→brought, think→thought, know→knew, feel→felt.",
+  },
+  {
+    id: "pts-irregular-no-ed",
+    tense: "past-simple",
+    category: "spelling",
+    title: "НЕ добавляй -ed к неправильным глаголам!",
+    text: "go→went (НЕ goed), see→saw (НЕ seed), buy→bought (НЕ buyed), catch→caught (НЕ catched).",
+  },
+  {
+    id: "pts-used-to",
+    tense: "past-simple",
+    category: "special",
+    title: "used to + V1 = бывшая привычка",
+    text: "He used to play football = раньше играл (теперь нет). Used to + V1. Не use to!",
+  },
+  {
+    id: "pts-could",
+    tense: "past-simple",
+    category: "special",
+    title: "could = Past Simple от can",
+    text: "I could swim when I was five. Could = общая способность. Однократный успех → was able to / managed to.",
+  },
+  {
+    id: "pts-had-to",
+    tense: "past-simple",
+    category: "special",
+    title: "must → had to (прошедшая обязанность)",
+    text: "Must не имеет прошедшей формы! Must → had to (был обязан). Didn't have to = не нужно было (отсутствие обязанности).",
+  },
+  {
+    id: "pts-was-able-to",
+    tense: "past-simple",
+    category: "special",
+    title: "was/were able to = удалось (однократно)",
+    text: "Could = общая способность (мог). Was able to = удалось в конкретном случае. I was able to solve it.",
+  },
+  {
+    id: "pts-reported-speech",
+    tense: "past-simple",
+    category: "special",
+    title: "Косвенная речь: Present Simple → Past Simple",
+    text: "She said she liked it (не likes). He told me he was tired (не is). Reported speech: сдвиг времени назад.",
+  },
+  {
+    id: "pts-conditional",
+    tense: "past-simple",
+    category: "special",
+    title: "Second Conditional: If + Past Simple, would + V1",
+    text: "If I had money, I would buy it. Нереальное условие в настоящем/будущем. If + Past Simple, не потому что прошлое!",
+  },
+  {
+    id: "pts-wish",
+    tense: "past-simple",
+    category: "special",
+    title: "I wish + Past Simple = сожаление",
+    text: "I wish I knew French = жаль, что не знаю. I wish I had more time. Wish + Past Simple для сожаления о настоящем.",
+  },
+];
+
+// ============================================================
+// Past Continuous Hints
+// ============================================================
+const pastContinuousHints: Hint[] = [
+  {
+    id: "ptc-formula",
+    tense: "past-continuous",
+    category: "formula",
+    title: "was / were + V-ing",
+    text: "I was reading. She was cooking. They were playing. I/he/she/it → was. You/we/they → were.",
+  },
+  {
+    id: "ptc-negative",
+    tense: "past-continuous",
+    category: "negation",
+    title: "wasn't / weren't + V-ing (не didn't!)",
+    text: "I wasn't sleeping. They weren't listening. НЕ: I didn't sleeping или I didn't was sleeping!",
+  },
+  {
+    id: "ptc-question",
+    tense: "past-continuous",
+    category: "question",
+    title: "Was / Were + подлежащее + V-ing?",
+    text: "Were you sleeping? Was she working? НЕ: Did you sleeping или Were you sleep?",
+  },
+  {
+    id: "ptc-wh-question",
+    tense: "past-continuous",
+    category: "question",
+    title: "Wh- + was/were + подлежащее + V-ing?",
+    text: "What were you doing? Where was she going? Why were they running? Who was talking?",
+  },
+  {
+    id: "ptc-signal-time",
+    tense: "past-continuous",
+    category: "signal-words",
+    title: "at + время, this time yesterday, from...to",
+    text: "at 8 pm, at 10 o'clock, this time yesterday, from 6 to 8 pm → точный момент в прошлом → Past Continuous.",
+  },
+  {
+    id: "ptc-signal-whole",
+    tense: "past-continuous",
+    category: "signal-words",
+    title: "all day/morning/week (завершённый период)",
+    text: "It was raining all day yesterday. She was working all morning. Весь период → Past Continuous.",
+  },
+  {
+    id: "ptc-usage-when",
+    tense: "past-continuous",
+    category: "usage",
+    title: "when = прерывание (фон + Past Simple)",
+    text: "I was reading when the phone rang. Фон = was reading (длился). Прерывание = rang (краткое, Past Simple).",
+  },
+  {
+    id: "ptc-usage-while",
+    tense: "past-continuous",
+    category: "usage",
+    title: "while = два параллельных действия",
+    text: "While I was reading, she was listening. While требует Past Continuous в обоих частях.",
+  },
+  {
+    id: "ptc-usage-background",
+    tense: "past-continuous",
+    category: "usage",
+    title: "Описание обстановки (фон рассказа)",
+    text: "The sun was shining and birds were singing. Фоновое описание → Past Continuous для всех действий.",
+  },
+  {
+    id: "ptc-usage-arrived",
+    tense: "past-continuous",
+    category: "usage",
+    title: "When I arrived, everyone was... (фон)",
+    text: "When I arrived (краткое), everyone was dancing (фон, уже происходило). Краткое событие → PS, фон → PC.",
+  },
+  {
+    id: "ptc-irritate",
+    tense: "past-continuous",
+    category: "usage",
+    title: "was always + V-ing = раздражение в прошлом",
+    text: "She was always complaining! He was always losing his keys! = раздражающая привычка в прошлом.",
+  },
+  {
+    id: "ptc-constantly",
+    tense: "past-continuous",
+    category: "usage",
+    title: "was constantly + V-ing (синоним always)",
+    text: "was constantly interrupting = раздражение. Синоним was always interrupting.",
+  },
+  {
+    id: "ptc-polite",
+    tense: "past-continuous",
+    category: "usage",
+    title: "I was wondering / I was hoping = вежливость",
+    text: "I was wondering if you could help. I was hoping you could come. = вежливая форма просьбы в прошлом.",
+  },
+  {
+    id: "ptc-no-routine",
+    tense: "past-continuous",
+    category: "usage",
+    title: "Привычки ≠ Past Continuous!",
+    text: "When I was young, I played every day → Past Simple (НЕ was playing). Every day = привычка → PS, не PC.",
+  },
+  {
+    id: "ptc-no-was-went",
+    tense: "past-continuous",
+    category: "special",
+    title: "Ошибка: «was went» не существует!",
+    text: "Нельзя: I was went. Правильно: I went (Past Simple) или I was going (Past Continuous).",
+  },
+  {
+    id: "ptc-stative",
+    tense: "past-continuous",
+    category: "stative",
+    title: "Стативные глаголы → Past Simple (не PC!)",
+    text: "She knew (НЕ was knowing). I wanted (НЕ was wanting). Know, want, like, believe → Past Simple.",
+  },
+  {
+    id: "ptc-dual-think",
+    tense: "past-continuous",
+    category: "stative",
+    title: "think: мнение → Simple, размышление → Continuous",
+    text: "I thought it was good = мнение → PS. I was thinking about my future = размышлял → PC.",
+  },
+  {
+    id: "ptc-dual-see",
+    tense: "past-continuous",
+    category: "stative",
+    title: "see: видеть → Simple, быть на приёме → Continuous",
+    text: "I saw him = видел → PS. She was seeing the doctor = была на приёме → PC.",
+  },
+  {
+    id: "ptc-dual-have",
+    tense: "past-continuous",
+    category: "stative",
+    title: "have: владеть → Simple, действие → Continuous",
+    text: "I had a car = владел → PS. I was having dinner = обедал → PC.",
+  },
+  {
+    id: "ptc-dual-feel",
+    tense: "past-continuous",
+    category: "stative",
+    title: "feel: состояние → Simple, процесс → Continuous",
+    text: "I felt happy = чувствовал себя → PS. I was feeling well = процесс (можно и PC).",
+  },
+];
 
 // ============================================================
 // All Hints Registry
@@ -571,6 +866,8 @@ export const ALL_HINTS: Hint[] = [
   ...presentContinuousHints,
   ...presentPerfectHints,
   ...presentPerfectContinuousHints,
+  ...pastSimpleHints,
+  ...pastContinuousHints,
 ];
 
 // Build index for fast lookup
