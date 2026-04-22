@@ -858,6 +858,152 @@ const pastContinuousHints: Hint[] = [
 ];
 
 // ============================================================
+// Past Perfect Hints
+// ============================================================
+const pastPerfectHints: Hint[] = [
+  {
+    id: "ptp-formula",
+    tense: "past-perfect",
+    category: "formula",
+    title: "had + V3 (для всех лиц)",
+    text: "Все лица одинаковы: I/You/He/She/It/We/They had + V3. V3 = 3-я форма глагола (past participle): worked, gone, seen, written.",
+  },
+  {
+    id: "ptp-negative",
+    tense: "past-perfect",
+    category: "negation",
+    title: "hadn't + V3",
+    text: "Отрицание: had not (hadn't) + V3. I hadn't finished. She hadn't arrived. НЕ: didn't have + V3.",
+  },
+  {
+    id: "ptp-question",
+    tense: "past-perfect",
+    category: "question",
+    title: "Had + подлежащее + V3?",
+    text: "Вопрос: Had you finished? Had she arrived? Had they left? Краткий ответ: Yes, I had. / No, I hadn't.",
+  },
+  {
+    id: "ptp-wh-question",
+    tense: "past-perfect",
+    category: "question",
+    title: "Wh- + had + подлежащее + V3?",
+    text: "What had you done? Where had she gone? Why had he left? How long had they waited?",
+  },
+  {
+    id: "ptp-signal-by-the-time",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "by the time — к тому времени как",
+    text: "By the time I arrived, she had left. Почти ВСЕГДА требует Past Perfect для более раннего действия.",
+  },
+  {
+    id: "ptp-signal-before",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "before — до того как",
+    text: "Before I got there, the film had started. Before задаёт порядок, поэтому PS тоже допустим, но PP — точнее.",
+  },
+  {
+    id: "ptp-signal-after",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "after — после того как",
+    text: "After she had finished, she went home. After задаёт порядок, поэтому PS тоже допустим.",
+  },
+  {
+    id: "ptp-signal-already",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "already — уже (в Past Perfect)",
+    text: "I had already eaten when they invited me. Already ставится между had и V3: had already finished.",
+  },
+  {
+    id: "ptp-signal-just",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "just — только что (в Past Perfect)",
+    text: "He had just left when I called. Just ставится между had и V3: had just finished.",
+  },
+  {
+    id: "ptp-signal-never",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "never — никогда (до момента в прошлом)",
+    text: "She had never travelled abroad before that trip. I had never tried sushi until that day.",
+  },
+  {
+    id: "ptp-signal-until",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "until — до (момента в прошлом)",
+    text: "I hadn't finished until midnight. He hadn't left until she called.",
+  },
+  {
+    id: "ptp-signal-by",
+    tense: "past-perfect",
+    category: "signal-words",
+    title: "by + момент — к определённому моменту",
+    text: "By 6 pm, I had completed the task. By Friday, she had finished the report.",
+  },
+  {
+    id: "ptp-usage-precedence",
+    tense: "past-perfect",
+    category: "usage",
+    title: "Действие произошло РАНЬШЕ другого",
+    text: "When I arrived, she had left. (left = раньше, arrived = позже). PP показывает, какое из двух действий было первым.",
+  },
+  {
+    id: "ptp-usage-duration",
+    tense: "past-perfect",
+    category: "usage",
+    title: "for / since + Past Perfect",
+    text: "She had worked there for 5 years before she resigned. He had known her since 2010. Длительность до момента в прошлом.",
+  },
+  {
+    id: "ptp-stative",
+    tense: "past-perfect",
+    category: "stative",
+    title: "Стативные глаголы в Past Perfect",
+    text: "I had known her for years (НЕ had been knowing). I had wanted to visit (НЕ had been wanting).",
+  },
+  {
+    id: "ptp-vs-past-simple",
+    tense: "past-perfect",
+    category: "usage",
+    title: "PP vs PS: когда PP НЕ нужен?",
+    text: "Когда порядок ясен: I woke up, had breakfast, went to work (все PS). С yesterday/ago/last week — только PS.",
+  },
+  {
+    id: "ptp-vs-past-continuous",
+    tense: "past-perfect",
+    category: "usage",
+    title: "PP vs PC: результат vs процесс",
+    text: "She had cleaned the room (результат к моменту). She was cleaning the room (процесс в определённый момент).",
+  },
+  {
+    id: "ptp-no-specific-time",
+    tense: "past-perfect",
+    category: "special",
+    title: "yesterday/ago/last → Past Simple!",
+    text: "I went there yesterday (НЕ had gone). She called last night (НЕ had called). Конкретное время → PS, не PP.",
+  },
+  {
+    id: "ptp-special-first-time",
+    tense: "past-perfect",
+    category: "special",
+    title: "the first/last time + Past Perfect",
+    text: "It was the first time she had visited London. That was the last time I had seen him.",
+  },
+  {
+    id: "ptp-special-hardly-when",
+    tense: "past-perfect",
+    category: "special",
+    title: "hardly / scarcely / no sooner + when",
+    text: "She had hardly entered the room when the phone rang. He had no sooner finished than the boss called.",
+  },
+];
+
+// ============================================================
 // All Hints Registry
 // ============================================================
 
@@ -868,6 +1014,7 @@ export const ALL_HINTS: Hint[] = [
   ...presentPerfectContinuousHints,
   ...pastSimpleHints,
   ...pastContinuousHints,
+  ...pastPerfectHints,
 ];
 
 // Build index for fast lookup

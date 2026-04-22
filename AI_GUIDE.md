@@ -61,6 +61,8 @@ src/lib/theory-present-perfect-continuous.ts — теория Present Perfect Co
 src/lib/theory-present-final-test.ts — теория итогового теста
 src/lib/theory-past-simple.ts — теория Past Simple
 src/lib/theory-past-continuous.ts — теория Past Continuous
+src/lib/theory-past-perfect.ts — теория Past Perfect
+src/lib/irregular-verbs.ts — таблица неправильных глаголов (87 шт., B1)
 
 src/lib/exercises/present-simple.ts — 100 упражнений, все с hintIds
 src/lib/exercises/present-continuous.ts — 100 упражнений, все с hintIds
@@ -69,7 +71,9 @@ src/lib/exercises/present-perfect-continuous.ts — 100 упражнений, в
 src/lib/exercises/present-final-test.ts — 100 упражнений, все с hintIds (смешанные)
 src/lib/exercises/past-simple.ts — 130 упражнений, все с hintIds
 src/lib/exercises/past-continuous.ts — 100 упражнений, все с hintIds
+src/lib/exercises/past-perfect.ts — 100 упражнений, все с hintIds
 
+src/components/tutor/irregular-verbs-table.tsx — интерактивная таблица глаголов (поиск, скролл)
 src/components/tutor/exercise-panel.tsx — ExerciseCard (система подсказок) + CompletePanel
 src/components/tutor/theory-panel.tsx — рендеринг Markdown теории
 src/components/tutor/test-setup-panel.tsx — настройка теста (количество, типы, старт)
@@ -109,6 +113,7 @@ Exercise:
 TheorySection:
   title: string
   content: string      — Markdown с GFM (таблицы, code, blockquote)
+  embedVerbs?: boolean — если true, под контентом рендерится интерактивная таблица неправильных глаголов
 
 TenseData:
   id: TenseId
@@ -215,6 +220,7 @@ ID подсказок: префикс_времени-категория-уник
   ppc — present-perfect-continuous  пример: ppc-formula, ppc-vs-perfect
   pts — past-simple          пример: pts-formula-v2, pts-irregular, pts-used-to
   ptc — past-continuous      пример: ptc-formula, ptc-usage-when, ptc-stative
+  ptp — past-perfect         пример: ptp-formula, ptp-signal-by-the-time, ptp-usage-precedence
 
 Файлы теории: theory-{tense-id}.ts, экспорт {tenseId}Theory: TheorySection[]
 Файлы упражнений: exercises/{tense-id}.ts, экспорт {tenseId}Exercises: Exercise[]
@@ -246,7 +252,7 @@ POST /api/tutor/reset       — тело отсутствует, ответ { su
 Блок 2 — Past Tenses
   past-simple                 — теория: есть, упражнений: 130, подсказок: 22, статус: готово
   past-continuous             — теория: есть, упражнений: 100, подсказок: 22, статус: готово
-  past-perfect                — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
+  past-perfect                — теория: есть (7 секций, только активный залог), упражнений: 100, подсказок: 20, статус: готово
   past-perfect-continuous     — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
 
 Блок 3 — Future Tenses
@@ -255,7 +261,9 @@ POST /api/tutor/reset       — тело отсутствует, ответ { su
   future-perfect              — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
   future-perfect-continuous   — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
 
-Всего: 730 упражнений, 115+ подсказок, 100% покрытие подсказками для готовых тем.
+Всего: 830 упражнений, 135+ подсказок, 100% покрытие подсказками для готовых тем.
+
+Tutor покрывает только активный залог. Косвенная речь (Reported Speech) и условные предложения (Conditionals) не входят в курс.
 
 
 ====================================================================

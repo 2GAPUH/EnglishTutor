@@ -36,6 +36,8 @@ export interface Exercise {
 export interface TheorySection {
   title: string;
   content: string;
+  /** If true, renders the interactive IrregularVerbsTable component instead of markdown */
+  embedVerbs?: boolean;
 }
 
 export interface TenseData {
@@ -110,7 +112,9 @@ import { presentFinalTestTheory } from "./theory-present-final-test";
 import { pastSimpleExercises } from "./exercises/past-simple";
 import { pastSimpleTheory } from "./theory-past-simple";
 import { pastContinuousExercises } from "./exercises/past-continuous";
+import { pastPerfectExercises } from "./exercises/past-perfect";
 import { pastContinuousTheory } from "./theory-past-continuous";
+import { pastPerfectTheory } from "./theory-past-perfect";
 
 // ============================================================
 // All Tenses
@@ -177,9 +181,9 @@ export const ALL_TENSES: Record<TenseId, TenseData> = {
     exercises: pastContinuousExercises,
   },
   "past-perfect": {
-    id: "past-perfect", nameEn: "Past Perfect", nameRu: "Past Perfect", block: "past", order: 3,
-    theory: [{ title: "Блок 2", content: "Блок прошедших времён будет доступен после завершения Блока 1." }],
-    exercises: [],
+    id: "past-perfect", nameEn: "Past Perfect", nameRu: "Past Perfect (предпрошедшее)", block: "past", order: 3,
+    theory: pastPerfectTheory,
+    exercises: pastPerfectExercises,
   },
   "past-perfect-continuous": {
     id: "past-perfect-continuous", nameEn: "Past Perfect Continuous", nameRu: "Past Perfect Continuous", block: "past", order: 4,
