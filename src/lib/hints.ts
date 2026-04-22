@@ -1004,6 +1004,187 @@ const pastPerfectHints: Hint[] = [
 ];
 
 // ============================================================
+// Past Perfect Continuous Hints
+// ============================================================
+const pastPerfectContinuousHints: Hint[] = [
+  {
+    id: "ptpc-formula",
+    tense: "past-perfect-continuous",
+    category: "formula",
+    title: "had been + V-ing (все лица)",
+    text: "Все лица одинаковы: I/You/He/She/It/We/They had been + V-ing. I had been working. She had been reading. They had been waiting.",
+  },
+  {
+    id: "ptpc-formula-short",
+    tense: "past-perfect-continuous",
+    category: "formula",
+    title: "Сокращённая форма: I'd been, she'd been",
+    text: "I'd been working = I had been working. She'd been waiting = She had been waiting. They'd been studying = They had been studying.",
+  },
+  {
+    id: "ptpc-negative",
+    tense: "past-perfect-continuous",
+    category: "negation",
+    title: "hadn't been + V-ing",
+    text: "Отрицание: had not (hadn't) been + V-ing. I hadn't been sleeping well. She hadn't been working. They hadn't been exercising.",
+  },
+  {
+    id: "ptpc-negative-no-did",
+    tense: "past-perfect-continuous",
+    category: "negation",
+    title: "НЕ: didn't been / wasn't been!",
+    text: "Частая ошибка: I didn't been working ❌ или I wasn't been working ❌. Правильно: I hadn't been working ✓. Только hadn't!",
+  },
+  {
+    id: "ptpc-question",
+    tense: "past-perfect-continuous",
+    category: "question",
+    title: "Had + подлежащее + been + V-ing?",
+    text: "Had you been waiting long? Had she been studying? Had they been working hard? Had ставится перед подлежащим.",
+  },
+  {
+    id: "ptpc-wh-question",
+    tense: "past-perfect-continuous",
+    category: "question",
+    title: "Wh- + had + подлежащее + been + V-ing?",
+    text: "What had you been doing? Where had she been working? How long had they been waiting? Why had he been running?",
+  },
+  {
+    id: "ptpc-short-answers",
+    tense: "past-perfect-continuous",
+    category: "question",
+    title: "Краткие ответы: Yes, I had. / No, I hadn't.",
+    text: "Had you been waiting? — Yes, I had. / No, I hadn't. Краткий ответ: had / hadn't, БЕЗ been и БЕЗ V-ing.",
+  },
+  {
+    id: "ptpc-signal-for",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "for + период до момента в прошлом",
+    text: "She had been working there for 5 years before she quit. I'd been waiting for two hours when he finally came.",
+  },
+  {
+    id: "ptpc-signal-since",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "since + точка во времени до момента в прошлом",
+    text: "He had been living there since 2010 before he moved. She'd been studying since morning when the exam started.",
+  },
+  {
+    id: "ptpc-signal-by-the-time",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "by the time + Past Simple → PPC",
+    text: "By the time I arrived, they had been waiting for an hour. К тому времени как — подчёркивает длительность до момента.",
+  },
+  {
+    id: "ptpc-signal-before",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "before + Past Simple",
+    text: "Before she left, she had been working there for years. Before = до того как, подчёркивает длительность предшествующего действия.",
+  },
+  {
+    id: "ptpc-signal-all",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "all day / morning / week",
+    text: "It had been raining all day before it finally stopped. He'd been running all morning before the race was cancelled.",
+  },
+  {
+    id: "ptpc-signal-how-long",
+    tense: "past-perfect-continuous",
+    category: "signal-words",
+    title: "How long had ... been + V-ing?",
+    text: "How long had you been living there before you moved? How long had she been studying before the exam?",
+  },
+  {
+    id: "ptpc-usage-duration",
+    tense: "past-perfect-continuous",
+    category: "usage",
+    title: "Действие длилось до другого действия в прошлом",
+    text: "I had been reading for two hours when she called. Подчёркивается ПРОЦЕСС, который длился до определённого момента в прошлом.",
+  },
+  {
+    id: "ptpc-usage-visible-result",
+    tense: "past-perfect-continuous",
+    category: "usage",
+    title: "Видимое доказательство в прошлом",
+    text: "She was wet because it had been raining. He was exhausted — he had been running for hours. Результат виден, но процесс уже завершился.",
+  },
+  {
+    id: "ptpc-usage-repeated",
+    tense: "past-perfect-continuous",
+    category: "usage",
+    title: "Повторяющиеся действия до момента в прошлом",
+    text: "I had been trying to call her all day before she finally answered. He'd been complaining about it for weeks before they fixed it.",
+  },
+  {
+    id: "ptpc-vs-past-perfect",
+    tense: "past-perfect-continuous",
+    category: "usage",
+    title: "PPC vs PP: процесс/длительность vs результат/количество",
+    text: "PPC: I had been reading (процесс, длилось). PP: I had read the book (результат, прочитал). PPC = акцент на процессе, PP = акцент на результате.",
+  },
+  {
+    id: "ptpc-vs-past-continuous",
+    tense: "past-perfect-continuous",
+    category: "usage",
+    title: "PPC vs PC: период до момента vs точный момент",
+    text: "PPC: I had been waiting for an hour (период до другого события). PC: I was waiting at 5 pm (в конкретный момент в прошлом). PPC = до, PC = в момент.",
+  },
+  {
+    id: "ptpc-stative",
+    tense: "past-perfect-continuous",
+    category: "stative",
+    title: "Стативные глаголы → Past Perfect (НЕ PPC!)",
+    text: "I had known her for years (НЕ had been knowing). She had wanted to visit (НЕ had been wanting). Стативные глаголы НЕ используются в Continuous формах.",
+  },
+  {
+    id: "ptpc-stative-list",
+    tense: "past-perfect-continuous",
+    category: "stative",
+    title: "Список стативных глаголов",
+    text: "know, believe, want, like, love, hate, need, belong, cost, mean, understand, remember, forget, seem, appear — все → Past Perfect, НЕ PPC.",
+  },
+  {
+    id: "ptpc-spelling-ing",
+    tense: "past-perfect-continuous",
+    category: "spelling",
+    title: "Правила -ing те же, что и в других Continuous",
+    text: "drop -e: make → making. -ie → -y: lie → lying. Правила орфографии -ing одинаковы для всех Continuous: PC, PPC, PTC, PTPC.",
+  },
+  {
+    id: "ptpc-spelling-double",
+    tense: "past-perfect-continuous",
+    category: "spelling",
+    title: "Удвоение согласной для -ing",
+    text: "Краткий гласный + 1 согласная → удваиваем: run → running, sit → sitting, stop → stopping, plan → planning, get → getting.",
+  },
+  {
+    id: "ptpc-no-specific-time",
+    tense: "past-perfect-continuous",
+    category: "special",
+    title: "yesterday / ago / last → Past Simple, НЕ PPC!",
+    text: "I went there yesterday (НЕ had been going). She called last night (НЕ had been calling). Конкретное время → Past Simple.",
+  },
+  {
+    id: "ptpc-special-not-needed",
+    tense: "past-perfect-continuous",
+    category: "special",
+    title: "PPC не нужен, если before/after уже показывают порядок",
+    text: "After she had worked there for years, she quit. After уже показывает порядок — Past Simple тоже допустим: After she worked there for years, she quit.",
+  },
+  {
+    id: "ptpc-special-had-been-being",
+    tense: "past-perfect-continuous",
+    category: "special",
+    title: "had been being — технически возможно, но крайне редко",
+    text: "The house had been being painted for weeks. (Пассивный PPC). Форма exists, но почти не используется. Обычно заменяют Past Perfect Passive: The house had been painted.",
+  },
+];
+
+// ============================================================
 // All Hints Registry
 // ============================================================
 
@@ -1015,6 +1196,7 @@ export const ALL_HINTS: Hint[] = [
   ...pastSimpleHints,
   ...pastContinuousHints,
   ...pastPerfectHints,
+  ...pastPerfectContinuousHints,
 ];
 
 // Build index for fast lookup

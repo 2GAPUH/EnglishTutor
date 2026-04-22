@@ -115,6 +115,8 @@ import { pastContinuousExercises } from "./exercises/past-continuous";
 import { pastPerfectExercises } from "./exercises/past-perfect";
 import { pastContinuousTheory } from "./theory-past-continuous";
 import { pastPerfectTheory } from "./theory-past-perfect";
+import { pastPerfectContinuousTheory } from "./theory-past-perfect-continuous";
+import { pastPerfectContinuousExercises } from "./exercises/past-perfect-continuous";
 
 // ============================================================
 // All Tenses
@@ -187,8 +189,8 @@ export const ALL_TENSES: Record<TenseId, TenseData> = {
   },
   "past-perfect-continuous": {
     id: "past-perfect-continuous", nameEn: "Past Perfect Continuous", nameRu: "Past Perfect Continuous", block: "past", order: 4,
-    theory: [{ title: "Блок 2", content: "Блок прошедших времён будет доступен после завершения Блока 1." }],
-    exercises: [],
+    theory: pastPerfectContinuousTheory,
+    exercises: pastPerfectContinuousExercises,
   },
   "future-simple": {
     id: "future-simple", nameEn: "Future Simple", nameRu: "Future Simple", block: "future", order: 1,
