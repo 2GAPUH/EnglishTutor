@@ -64,6 +64,8 @@ src/lib/theory-past-continuous.ts — теория Past Continuous
 src/lib/theory-past-perfect.ts — теория Past Perfect
 src/lib/theory-past-perfect-continuous.ts — теория Past Perfect Continuous
 src/lib/theory-future-simple.ts — теория Future Simple
+src/lib/theory-future-continuous.ts — теория Future Continuous
+src/lib/theory-future-perfect.ts — теория Future Perfect
 src/lib/irregular-verbs.ts — таблица неправильных глаголов (87 шт., B1), тип IrregularVerb, константа IRREGULAR_VERBS
 
 src/lib/exercises/present-simple.ts — 100 упражнений, все с hintIds
@@ -76,6 +78,8 @@ src/lib/exercises/past-continuous.ts — 100 упражнений, все с hin
 src/lib/exercises/past-perfect.ts — 100 упражнений, все с hintIds
 src/lib/exercises/past-perfect-continuous.ts — 100 упражнений, все с hintIds
 src/lib/exercises/future-simple.ts — 100 упражнений, все с hintIds
+src/lib/exercises/future-continuous.ts — 100 упражнений, все с hintIds
+src/lib/exercises/future-perfect.ts — 100 упражнений, все с hintIds
 
 src/components/tutor/irregular-verbs-table.tsx — интерактивная таблица глаголов (поиск, скролл)
 src/components/tutor/irregular-verbs-test.tsx — тестирование знания форм неправильных глаголов (настройка, вопросы, результаты)
@@ -96,10 +100,10 @@ src/hooks/use-toast.ts — вероятно не используется, sonne
 КЛЮЧЕВЫЕ ТИПЫ
 ====================================================================
 
-TenseId — юнион из 13 строк:
+TenseId — юнион из 12 строк:
   "present-simple" "present-continuous" "present-perfect" "present-perfect-continuous" "present-final-test"
   "past-simple" "past-continuous" "past-perfect" "past-perfect-continuous"
-  "future-simple" "future-continuous" "future-perfect" "future-perfect-continuous"
+  "future-simple" "future-continuous" "future-perfect"
 
 BlockId — "present" | "past" | "future"
 
@@ -245,6 +249,8 @@ ID подсказок: префикс_времени-категория-уник
   ptc — past-continuous      пример: ptc-formula, ptc-usage-when, ptc-stative
   ptp — past-perfect         пример: ptp-formula, ptp-signal-by-the-time, ptp-usage-precedence
   fts — future-simple        пример: fts-formula, fts-negative, fts-usage-spontaneous
+  ftc — future-continuous    пример: ftc-formula, ftc-usage-process, ftc-stative
+  fpr — future-perfect        пример: fpr-formula, fpr-signal-by, fpr-usage-completion
 
 Файлы теории: theory-{tense-id}.ts, экспорт {tenseId}Theory: TheorySection[]
 Файлы упражнений: exercises/{tense-id}.ts, экспорт {tenseId}Exercises: Exercise[]
@@ -281,11 +287,10 @@ POST /api/tutor/reset       — тело отсутствует, ответ { su
 
 Блок 3 — Future Tenses
   future-simple               — теория: есть (10 секций), упражнений: 100, подсказок: 24, статус: готово
-  future-continuous           — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
-  future-perfect              — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
-  future-perfect-continuous   — теория: placeholder, упражнений: 0, подсказок: 0, статус: заблокировано
+  future-continuous           — теория: есть (10 секций), упражнений: 100, подсказок: 29, статус: готово
+  future-perfect              — теория: есть (10 секций, только активный залог), упражнений: 100, подсказок: 18, статус: готово
 
-Всего: 1030 упражнений, 184+ подсказок, 100% покрытие подсказками для готовых тем.
+Всего: 1130 упражнений, 227 подсказок, 100% покрытие подсказками для готовых тем.
 
 Дополнительная информация:
   Неправильные глаголы — 87 глаголов уровня B1, интерактивная таблица с поиском, тестирование знания V2/V3 форм

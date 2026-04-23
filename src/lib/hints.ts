@@ -1370,6 +1370,360 @@ const futureSimpleHints: Hint[] = [
 ];
 
 // ============================================================
+// Future Continuous Hints
+// ============================================================
+const futureContinuousHints: Hint[] = [
+  // --- Formula (4) ---
+  {
+    id: "ftc-formula",
+    tense: "future-continuous",
+    category: "formula",
+    title: "will be + V-ing (утверждение)",
+    text: "Все лица одинаковы: I will be working, she will be working, they will be working. Will + be + глагол с -ing. Сокращение: I'll be working.",
+  },
+  {
+    id: "ftc-negative",
+    tense: "future-continuous",
+    category: "negation",
+    title: "won't be + V-ing (отрицание)",
+    text: "Отрицание: will not be (won't be) + V-ing. I won't be working. She won't be coming. They won't be staying. Won't = will not. НЕ: don't be + V-ing!",
+  },
+  {
+    id: "ftc-question",
+    tense: "future-continuous",
+    category: "question",
+    title: "Will + подлежащее + be + V-ing?",
+    text: "Вопрос: Will + подлежащее + be + V-ing? Will you be working? Will she be coming? Will they be staying? Краткий ответ: Yes, I will. / No, I won't.",
+  },
+  {
+    id: "ftc-wh-question",
+    tense: "future-continuous",
+    category: "question",
+    title: "Wh- + will + подлежащее + be + V-ing?",
+    text: "What will you be doing? Where will she be working? How long will they be staying? Who will be coming?",
+  },
+
+  // --- Signal words (5) ---
+  {
+    id: "ftc-signal-at-time",
+    tense: "future-continuous",
+    category: "signal-words",
+    title: "at + время tomorrow, this time tomorrow",
+    text: "at 5 pm tomorrow, at 8 o'clock tonight, this time tomorrow, this time next week → Future Continuous. Действие будет в процессе в этот момент.",
+  },
+  {
+    id: "ftc-signal-from-to",
+    tense: "future-continuous",
+    category: "signal-words",
+    title: "from...to, during",
+    text: "from 5 to 7 pm, from Monday to Friday, during the meeting, during the flight → Future Continuous. Действие длится в течение периода.",
+  },
+  {
+    id: "ftc-signal-when",
+    tense: "future-continuous",
+    category: "signal-words",
+    title: "when + Future Continuous (фон)",
+    text: "I will be sleeping when you arrive. When задёт момент, в который действие уже будет в процессе → Future Continuous.",
+  },
+  {
+    id: "ftc-signal-while",
+    tense: "future-continuous",
+    category: "signal-words",
+    title: "while + Future Continuous (параллельные)",
+    text: "While I am working, she will be reading. While = два параллельных действия в будущем → оба в Continuous.",
+  },
+  {
+    id: "ftc-signal-all-day",
+    tense: "future-continuous",
+    category: "signal-words",
+    title: "all day/morning/evening tomorrow",
+    text: "I will be working all day tomorrow. She'll be studying all evening. Действие будет длиться весь период → Future Continuous.",
+  },
+
+  // --- Usage (5) ---
+  {
+    id: "ftc-usage-process",
+    tense: "future-continuous",
+    category: "usage",
+    title: "Действие в процессе в определённый момент",
+    text: "At 8 pm tomorrow, I will be watching TV. Действие начнётся ДО этого момента и будет продолжаться В этот момент. Не факт, а ПРОЦЕСС!",
+  },
+  {
+    id: "ftc-usage-background",
+    tense: "future-continuous",
+    category: "usage",
+    title: "Фон для другого будущего действия",
+    text: "I will be cooking when you arrive. FC = фон (длится), FS/PS = прерывание (краткое). Аналогично Past Continuous + Past Simple, но в будущем.",
+  },
+  {
+    id: "ftc-usage-parallel",
+    tense: "future-continuous",
+    category: "usage",
+    title: "Два параллельных будущих действия",
+    text: "While she is reading, I will be working. Два действия будут происходить одновременно → оба в Future Continuous.",
+  },
+  {
+    id: "ftc-usage-expected",
+    tense: "future-continuous",
+    category: "usage",
+    title: "Ожидаемое / неизбежное действие (рутина)",
+    text: "I will be seeing John at the meeting. Действие произойдёт как часть обычного хода событий. Не обещание, не план — просто ожидание.",
+  },
+  {
+    id: "ftc-usage-polite",
+    tense: "future-continuous",
+    category: "usage",
+    title: "Вежливый вопрос о планах",
+    text: "Will you be using the car tonight? Вежливее, чем «Are you going to use...?» — это не просьба, а просто вопрос о планах. Ответ «No» не обидит.",
+  },
+
+  // --- Comparisons (3) ---
+  {
+    id: "ftc-vs-future-simple",
+    tense: "future-continuous",
+    category: "usage",
+    title: "FC vs FS: процесс vs факт/результат",
+    text: "FC: I will be working at 5 pm (процесс). FS: I will finish by 5 pm (результат). FC = в процессе, FS = один раз / факт будущего.",
+  },
+  {
+    id: "ftc-vs-present-continuous",
+    tense: "future-continuous",
+    category: "usage",
+    title: "FC vs PC: ожидается vs договорились",
+    text: "PC: I'm meeting John at 5 (договорились, конкретный план). FC: I'll be meeting John at 5 (ожидается как часть рутины). PC = договорённость, FC = ожидание.",
+  },
+  {
+    id: "ftc-vs-going-to",
+    tense: "future-continuous",
+    category: "usage",
+    title: "FC vs be going to: процесс vs намерение",
+    text: "be going to: I'm going to study tonight (намерение, решение). FC: I'll be studying at 8 pm tonight (процесс). going to = что хочу делать, FC = что буду делать в этот момент.",
+  },
+
+  // --- Stative verbs (5) ---
+  {
+    id: "ftc-stative",
+    tense: "future-continuous",
+    category: "stative",
+    title: "Стативные → Future Simple, НЕ Future Continuous",
+    text: "Стативные глаголы НЕ используются в Future Continuous: I will know (НЕ will be knowing). She will understand (НЕ will be understanding).",
+  },
+  {
+    id: "ftc-stative-list",
+    tense: "future-continuous",
+    category: "stative",
+    title: "Список стативных глаголов",
+    text: "know, believe, want, like, love, hate, need, belong, own, cost, mean, understand, remember, forget, seem, appear, prefer, realise, suppose — все → Future Simple, НЕ Future Continuous.",
+  },
+  {
+    id: "ftc-dual-think",
+    tense: "future-continuous",
+    category: "stative",
+    title: "think: мнение → FS, размышление → FC",
+    text: "I will think about it = подумаю (мнение → FS). I will be thinking about you = буду думать (процесс → FC). think + about = размышление → Continuous.",
+  },
+  {
+    id: "ftc-dual-have",
+    tense: "future-continuous",
+    category: "stative",
+    title: "have: владеть → FS, действие → FC",
+    text: "She will have a new car = будет владеть → FS. She will be having lunch = будет обедать → FC. have + обед/душ/встреча = действие → Continuous.",
+  },
+  {
+    id: "ftc-dual-see",
+    tense: "future-continuous",
+    category: "stative",
+    title: "see: видеть → FS, встречаться → FC",
+    text: "I will see the mountains = увижу (восприятие → FS). I will be seeing the doctor = буду на приёме → FC. see = встречаться → Continuous.",
+  },
+
+  // --- Spelling (3) ---
+  {
+    id: "ftc-spelling-drop-e",
+    tense: "future-continuous",
+    category: "spelling",
+    title: "Убираем -e, добавляем -ing",
+    text: "make → making, take → taking, write → writing, come → coming, have → having, leave → leaving. will be writing, will be making.",
+  },
+  {
+    id: "ftc-spelling-double",
+    tense: "future-continuous",
+    category: "spelling",
+    title: "Краткий гласный + 1 согласная → удваиваем",
+    text: "run → running, sit → sitting, stop → stopping, plan → planning, get → getting. will be running, will be sitting.",
+  },
+  {
+    id: "ftc-spelling-ie",
+    tense: "future-continuous",
+    category: "spelling",
+    title: "-ie → -y + -ing",
+    text: "lie → lying, die → dying, tie → tying. will be lying, will be dying. -ie превращается в -y, потом + -ing.",
+  },
+
+  // --- Special (4) ---
+  {
+    id: "ftc-no-double-be",
+    tense: "future-continuous",
+    category: "special",
+    title: "НЕ will be being (не удваиваем be)",
+    text: "Нельзя: I will be being happy ❌. Это звучит неестественно. Вместо этого используйте Future Simple: I will be happy ✓ или Present Continuous: I am being silly.",
+  },
+  {
+    id: "ftc-wont-be",
+    tense: "future-continuous",
+    category: "special",
+    title: "won't be + V-ing = отказ/нежелание быть в процессе",
+    text: "I won't be coming to the party. She won't be staying with us. won't be + V-ing = кто-то не будет участвовать в действии.",
+  },
+  {
+    id: "ftc-polite-questions",
+    tense: "future-continuous",
+    category: "special",
+    title: "Will you be...? = вежливый вопрос, не просьба",
+    text: "Will you be needing anything? Will you be staying for dinner? Это НЕ просьба, а вежливый вопрос. Ответ «No» не грубый. Типично для британского сервиса.",
+  },
+  {
+    id: "ftc-time-clauses",
+    tense: "future-continuous",
+    category: "special",
+    title: "Придаточные времени: Present Simple, не will",
+    text: "I will be sleeping when you arrive (НЕ when you will arrive). While she works, I will be reading (НЕ while she will work). После when/while/as soon as → Present Simple!",
+  },
+];
+
+// ============================================================
+// Future Perfect Hints
+// ============================================================
+const futurePerfectHints: Hint[] = [
+  {
+    id: "fpr-formula",
+    tense: "future-perfect",
+    category: "formula",
+    title: "will have + V3 (все лица)",
+    text: "Все лица одинаковы: I/You/He/She/It/We/They will have + V3. V3 = 3-я форма глагола (past participle): worked, gone, seen, written. Сокращение: I'll have, she'll have.",
+  },
+  {
+    id: "fpr-negative",
+    tense: "future-perfect",
+    category: "negation",
+    title: "won't have / will not have + V3",
+    text: "Отрицание: will not (won't) have + V3. I won't have finished. She won't have arrived. НЕ: will haven't. После won't have — ВСЕГДА V3, не V1!",
+  },
+  {
+    id: "fpr-question",
+    tense: "future-perfect",
+    category: "question",
+    title: "Will + подлежащее + have + V3?",
+    text: "Вопрос: Will + подлежащее + have + V3? Will you have finished? Will she have arrived? Порядок: Will → подлежащее → have → V3. НЕ: Will have you finished?",
+  },
+  {
+    id: "fpr-wh-question",
+    tense: "future-perfect",
+    category: "question",
+    title: "Wh- + will + подлежащее + have + V3?",
+    text: "What will you have done? Where will she have gone? How long will you have studied? Порядок: Wh- → will → подлежащее → have → V3.",
+  },
+  {
+    id: "fpr-signal-by",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "by + момент/дата — САМЫЙ СИЛЬНЫЙ маркер",
+    text: "By 5 pm, by Friday, by 2030, by the end of the week — если видите «by + момент в будущем», скорее всего это Future Perfect. «By» = к какому-то моменту действие будет завершено.",
+  },
+  {
+    id: "fpr-signal-by-the-time",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "by the time — к тому времени как",
+    text: "By the time I arrive, she will have left. САМОЕ СИЛЬНОЕ сочетание для Future Perfect. Главное предложение — FP, придаточное — Present Simple (НЕ will!).",
+  },
+  {
+    id: "fpr-signal-before",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "before — до того как",
+    text: "Before you come, I will have cooked dinner. Before + Present Simple в придаточном. Главное предложение в Future Perfect.",
+  },
+  {
+    id: "fpr-signal-already",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "already — уже (к будущему моменту)",
+    text: "She will have already left. Already ставится между will have и V3: will have already finished. Подчёркивает, что действие будет выполнено до другого события.",
+  },
+  {
+    id: "fpr-signal-just",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "just — только что (к моменту)",
+    text: "She will have just left when you arrive. Just ставится после have: will have just + V3. Означает «только-только завершилось к моменту».",
+  },
+  {
+    id: "fpr-signal-never",
+    tense: "future-perfect",
+    category: "signal-words",
+    title: "never — никогда (к будущему моменту)",
+    text: "He will never have tried it. Will never have + V3. Описывает отсутствие опыта к определённому будущему моменту.",
+  },
+  {
+    id: "fpr-usage-completion",
+    tense: "future-perfect",
+    category: "usage",
+    title: "Действие будет ЗАВЕРШЕНО к моменту",
+    text: "Главная функция Future Perfect — показать, что действие будет полностью завершено к определённому моменту: By 5 pm, I will have finished. Ключевая идея: «к моменту X — ГОТОВО».",
+  },
+  {
+    id: "fpr-usage-duration",
+    tense: "future-perfect",
+    category: "usage",
+    title: "Длительность к будущему моменту (for)",
+    text: "By next June, I will have lived here for 5 years. Future Perfect + for показывает, как долго действие длилось к определённому будущему моменту.",
+  },
+  {
+    id: "fpr-usage-experience",
+    tense: "future-perfect",
+    category: "usage",
+    title: "Достижение/опыт к будущему моменту",
+    text: "By age 30, he will have read 100 books. By the end of the year, I will have visited 10 countries. Описание накопленного результата к определённому моменту.",
+  },
+  {
+    id: "fpr-vs-future-simple",
+    tense: "future-perfect",
+    category: "usage",
+    title: "FP vs FS: завершённость vs факт",
+    text: "Future Perfect = результат к моменту (by 5 pm, I will have finished). Future Simple = факт о будущем (I will finish at 5 pm). Тест: «к моменту X будет сделано?» → FP.",
+  },
+  {
+    id: "fpr-vs-future-continuous",
+    tense: "future-perfect",
+    category: "usage",
+    title: "FP vs FC: by (к моменту) vs at (в момент)",
+    text: "Future Perfect + by = завершено к моменту (By 8 pm, I will have finished). Future Continuous + at = в процессе в момент (At 8 pm, I will be working). by → ГОТОВО, at → В ПРОЦЕССЕ.",
+  },
+  {
+    id: "fpr-stative",
+    tense: "future-perfect",
+    category: "stative",
+    title: "Стативные глаголы в Future Perfect",
+    text: "Стативные глаголы в FP работают нормально: will have known, will have loved, will have owned. Проблема возникает только если попытаться добавить Continuous: НЕ will have been knowing.",
+  },
+  {
+    id: "fpr-time-clauses",
+    tense: "future-perfect",
+    category: "special",
+    title: "В придаточных времени — Present Simple, НЕ will!",
+    text: "By the time I arrive (НЕ will arrive), she will have left. Before you come (НЕ will come), I will have finished. Правило «no double future»: после by the time, before, when — Present Simple.",
+  },
+  {
+    id: "fpr-wont-have",
+    tense: "future-perfect",
+    category: "negation",
+    title: "won't have + V3 = «не успею к моменту»",
+    text: "I won't have finished by 5 pm = я не успею закончить к 5 вечера. Won't have означает, что действие НЕ будет завершено к определённому моменту. НЕ путать с won't (Future Simple).",
+  },
+];
+
+// ============================================================
 // All Hints Registry
 // ============================================================
 
@@ -1383,6 +1737,8 @@ export const ALL_HINTS: Hint[] = [
   ...pastPerfectHints,
   ...pastPerfectContinuousHints,
   ...futureSimpleHints,
+  ...futureContinuousHints,
+  ...futurePerfectHints,
 ];
 
 // Build index for fast lookup

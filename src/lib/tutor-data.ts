@@ -14,8 +14,7 @@ export type TenseId =
   | "past-perfect-continuous"
   | "future-simple"
   | "future-continuous"
-  | "future-perfect"
-  | "future-perfect-continuous";
+  | "future-perfect";
 
 export type BlockId = "present" | "past" | "future";
 
@@ -60,7 +59,7 @@ export interface BlockData {
 export const BLOCKS: BlockData[] = [
   { id: "present", nameRu: "Настоящие времена", nameEn: "Present Tenses", tenses: ["present-simple", "present-continuous", "present-perfect", "present-perfect-continuous", "present-final-test"] },
   { id: "past", nameRu: "Прошедшие времена", nameEn: "Past Tenses", tenses: ["past-simple", "past-continuous", "past-perfect", "past-perfect-continuous"] },
-  { id: "future", nameRu: "Будущие времена", nameEn: "Future Tenses", tenses: ["future-simple", "future-continuous", "future-perfect", "future-perfect-continuous"] },
+  { id: "future", nameRu: "Будущие времена", nameEn: "Future Tenses", tenses: ["future-simple", "future-continuous", "future-perfect"] },
 ];
 
 export const TENSE_ORDER: TenseId[] = [
@@ -76,7 +75,6 @@ export const TENSE_ORDER: TenseId[] = [
   "future-simple",
   "future-continuous",
   "future-perfect",
-  "future-perfect-continuous",
 ];
 
 export const TENSE_NAMES: Record<TenseId, { en: string; ru: string }> = {
@@ -92,7 +90,6 @@ export const TENSE_NAMES: Record<TenseId, { en: string; ru: string }> = {
   "future-simple": { en: "Future Simple", ru: "Future Simple (простое будущее)" },
   "future-continuous": { en: "Future Continuous", ru: "Future Continuous (будущее длительное)" },
   "future-perfect": { en: "Future Perfect", ru: "Future Perfect (будущее совершённое)" },
-  "future-perfect-continuous": { en: "Future Perfect Continuous", ru: "Future Perfect Continuous" },
 };
 
 // ============================================================
@@ -119,6 +116,10 @@ import { pastPerfectContinuousTheory } from "./theory-past-perfect-continuous";
 import { pastPerfectContinuousExercises } from "./exercises/past-perfect-continuous";
 import { futureSimpleTheory } from "./theory-future-simple";
 import { futureSimpleExercises } from "./exercises/future-simple";
+import { futureContinuousTheory } from "./theory-future-continuous";
+import { futureContinuousExercises } from "./exercises/future-continuous";
+import { futurePerfectTheory } from "./theory-future-perfect";
+import { futurePerfectExercises } from "./exercises/future-perfect";
 
 // ============================================================
 // All Tenses
@@ -200,19 +201,14 @@ export const ALL_TENSES: Record<TenseId, TenseData> = {
     exercises: futureSimpleExercises,
   },
   "future-continuous": {
-    id: "future-continuous", nameEn: "Future Continuous", nameRu: "Future Continuous", block: "future", order: 2,
-    theory: [{ title: "Блок 3", content: "Блок будущих времён будет доступен после завершения Блоков 1 и 2." }],
-    exercises: [],
+    id: "future-continuous", nameEn: "Future Continuous", nameRu: "Future Continuous (будущее длительное)", block: "future", order: 2,
+    theory: futureContinuousTheory,
+    exercises: futureContinuousExercises,
   },
   "future-perfect": {
-    id: "future-perfect", nameEn: "Future Perfect", nameRu: "Future Perfect", block: "future", order: 3,
-    theory: [{ title: "Блок 3", content: "Блок будущих времён будет доступен после завершения Блоков 1 и 2." }],
-    exercises: [],
-  },
-  "future-perfect-continuous": {
-    id: "future-perfect-continuous", nameEn: "Future Perfect Continuous", nameRu: "Future Perfect Continuous", block: "future", order: 4,
-    theory: [{ title: "Блок 3", content: "Блок будущих времён будет доступен после завершения Блоков 1 и 2." }],
-    exercises: [],
+    id: "future-perfect", nameEn: "Future Perfect", nameRu: "Future Perfect (будущее совершённое)", block: "future", order: 3,
+    theory: futurePerfectTheory,
+    exercises: futurePerfectExercises,
   },
 };
 
